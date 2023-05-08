@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/models/User';
-import { LoginService } from 'src/app/login.service';
+import { LoginService } from 'src/app/login/service/login.service';
 import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
@@ -10,7 +10,9 @@ import {Router} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent {
+
 
   public userToCreate: User = {} as User
   public created = false
@@ -50,7 +52,8 @@ export class LoginComponent {
           if(data){
             this.loginService.getRole(this.loginForm.value.login_email).subscribe(
               data2 => {
-                console.log(data2);
+//                 Agregar a observable
+                console.log(data2, this.loginForm.value.login_email);
               }
             );
 
