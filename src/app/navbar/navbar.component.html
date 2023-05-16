@@ -14,7 +14,7 @@
         <div class="header-actions">
           <clr-dropdown>
             <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-              admin@itszn.mx.com
+              {{ (data$ |async)?.email }}
               <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
