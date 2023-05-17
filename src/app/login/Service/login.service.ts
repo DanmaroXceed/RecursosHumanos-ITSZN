@@ -21,7 +21,7 @@ export class LoginService {
     return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/getIdentity`);
   }
 
-  public getRole(email: string): Observable<string>{
+  public getUserLogged(email: string): Observable<string>{
     const params = new HttpParams().append('email', email);
     return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/getRole`, {params});
   }
@@ -29,6 +29,10 @@ export class LoginService {
   public signIn(email:string, password: string): Observable<any>{
     const params = new HttpParams().append('email', email).append('password', password);
     return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/signIn`, {params});
+  }
+
+  public SignOut():Observable<any>{
+    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/logout`);
   }
 
 }

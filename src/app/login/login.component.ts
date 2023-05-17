@@ -21,6 +21,7 @@ export class LoginComponent {
   //public users : User[] = [];
   public isModalVisible = false;
   public faltanDatos = false;
+  public errorLogin = false;
 
   loginForm: FormGroup;
   @ViewChild('submitButton') submitButton!: ElementRef<HTMLButtonElement>;
@@ -68,17 +69,16 @@ export class LoginComponent {
         data => { 
           // console.log(data);
           if(data){
-            this.loginService.getRole(this.loginForm.value.login_email).subscribe(
-              data2 => { 
-                const datosjson = JSON.stringify(data2);
-                this.datosLoginService.datosObservable = JSON.parse(datosjson);
+            this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
+              data2 => {
+                localStorage.setItem('usuario', JSON.stringify(data2));
               }
             );
             
             this.router.navigate(['home']);
           }
           else{
-            console.log("Credenciales erroneas");
+            this.errorLogin = true;
           }
         });
     }
@@ -86,5 +86,9 @@ export class LoginComponent {
 
   cerrarAlertaDeError(){
     this.faltanDatos = false;
+  }
+
+  cerrarErrorLogin(){
+    this.errorLogin = false;
   }
 }

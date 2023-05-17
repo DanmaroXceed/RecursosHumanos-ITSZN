@@ -6,6 +6,23 @@
             Gestion de expediente 
             <h5 class="hint">Ingrese sus datos para acceder</h5>
         </section>
+
+        <!-- Alerta de error -->
+        <div class="alert alert-info" role="alert" *ngIf="errorLogin">
+            <div class="alert-items">
+                <div class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">Datos erroneos, por favor ingresa nuevamente </span>
+                    <div class="alert-actions">
+                        <button class="btn btn-primary" type="button" (click)="cerrarErrorLogin()">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Fin alerta de error -->
+
         <div class="login-group">
             <input class="email" type="text" id="login_email" placeholder="Correo electronico" formControlName="login_email">
             <input class="password" type="password" id="login_password" placeholder="Contraseña" formControlName="login_password">
