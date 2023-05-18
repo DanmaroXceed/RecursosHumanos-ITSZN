@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import { DatosLoginService } from '../core/servicios/datos-login.service';
+import { AuthService } from '../core/servicios/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import { DatosLoginService } from '../core/servicios/datos-login.service';
 export class LoginComponent {
 
   public errorLogin = false;
-
+  routeRedirect = '';
 
   loginForm: FormGroup;
 
@@ -25,7 +26,8 @@ export class LoginComponent {
               private formBuilder: FormBuilder, 
               private router: Router,
               //Se declara el servicio de observable 
-              private datosLoginService: DatosLoginService) {
+              private datosLoginService: DatosLoginService,
+              private authService : AuthService) {
     this.loginForm = this.formBuilder.group({
       login_email: ['', [Validators.required, Validators.email]],
       login_password: ['', Validators.required]
@@ -46,8 +48,11 @@ export class LoginComponent {
                 localStorage.setItem('usuario', JSON.stringify(data2));
               }
             );
-            
-            this.router.navigate(['home']);
+            this.authService.login();
+            this.routeRedirect = this.authService.urlUsuarioIntentaAcceder;
+            this.authService.urlUsuarioIntentaAcceder = '';
+
+            this.router.navigate([this.routeRedirect]);
           }
           else{
             this.errorLogin = true;

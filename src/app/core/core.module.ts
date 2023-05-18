@@ -8,7 +8,8 @@ import { DatosLoginService } from './servicios/datos-login.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [CommonModule],
   providers : [DatosLoginService]
 })
