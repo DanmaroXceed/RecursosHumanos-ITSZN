@@ -14,7 +14,7 @@ import { AuthService } from '../core/servicios/auth.service';
 })
 
 export class LoginComponent {
-
+  
   public errorLogin = false;
   routeRedirect = '';
 
@@ -45,12 +45,12 @@ export class LoginComponent {
             this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
               data2 => {
                 // console.log(data2)
-                localStorage.setItem('usuario', JSON.stringify(data2));
+                localStorage.setItem("usuario", JSON.stringify(data2));
               }
             );
             this.authService.login();
             this.routeRedirect = this.authService.urlUsuarioIntentaAcceder;
-            this.authService.urlUsuarioIntentaAcceder = '';
+            this.authService.urlUsuarioIntentaAcceder = 'home';
 
             this.router.navigate([this.routeRedirect]);
           }

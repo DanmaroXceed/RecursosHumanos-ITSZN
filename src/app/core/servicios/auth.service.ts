@@ -13,7 +13,7 @@ export class AuthService {
   constructor() { }
 
   readonly ISLOGGEDKEY = 'islogged';
-  public urlUsuarioIntentaAcceder = '';
+  public urlUsuarioIntentaAcceder = 'home';
 
   public changeLoginStatusSubject = new Subject<boolean>;
   public changeLoginStatus$ = this.changeLoginStatusSubject.asObservable();

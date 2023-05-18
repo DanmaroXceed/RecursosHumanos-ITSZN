@@ -31,7 +31,6 @@ export class NavbarComponent {
     //se asigna valor a data$ mediante el servicio datosLoginService y el metodo observable que regresa sus datos
     this.data = JSON.parse(localStorage.getItem('usuario') || "{}");
     console.log(this.data)
-    
   }
 
   signOut(){
@@ -42,7 +41,6 @@ export class NavbarComponent {
     */
 
     this.authService.logout()
-    localStorage.removeItem("usuario");
     this.router.navigate(['']);
   }
 
