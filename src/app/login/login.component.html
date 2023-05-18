@@ -22,77 +22,14 @@
             </div>
         </div>
         <!-- Fin alerta de error -->
-
+        
+        <!-- Login -->
         <div class="login-group">
             <input class="email" type="text" id="login_email" placeholder="Correo electronico" formControlName="login_email">
             <input class="password" type="password" id="login_password" placeholder="Contraseña" formControlName="login_password">
             <button type="submit" class="btn btn-primary" >ACCEDER</button>
-            <button class="btn btn-link" (click)="isModalVisible=true">Registrarse</button>
+            <button class="btn btn-link" >Registrarse</button>
         </div>
+        <!-- Fin del login -->
     </form>
   </div>
-  
-  <clr-modal [(clrModalOpen)]="isModalVisible" [clrModalSize]="'lg'" #formSignUp>
-      <h3 class="modal-title">Por favor ingresa la siguiente información.</h3>
-      <div class="modal-body">
-          <form clrForm>
-            <!-- Alerta de registro exitoso -->
-              <div class="alert alert-info" role="alert" *ngIf="created">
-                  <div class="alert-items">
-                      <div class="alert-item static">
-                          <div class="alert-icon-wrapper">
-                              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-                          </div>
-                          <span class="alert-text">Se te ha enviado un correo eletronico de confirmacion (token {{token}}), para poder continuar con el proceso de registro. </span>
-                          <div class="alert-actions">
-                              <button class="btn btn-primary" type="button" (click)="close()">Cerrar</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-            <!-- Fin alerta de registro exitoso -->
-
-            <!-- Alerta de error -->
-            <div class="alert alert-info" role="alert" *ngIf="faltanDatos">
-                <div class="alert-items">
-                    <div class="alert-item static">
-                        <div class="alert-icon-wrapper">
-                            <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-                        </div>
-                        <span class="alert-text">Asegura que la informacion este completa </span>
-                        <div class="alert-actions">
-                            <button class="btn btn-primary" type="button" (click)="cerrarAlertaDeError()">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Fin alerta de error -->
-              <clr-input-container>
-                <label>Nombre:</label>
-                <input clrInput type="text" [(ngModel)]="userToCreate.firstname" name="firstname" placeholder="Nombre" required />
-                <clr-control-error>Se requiere un nombre</clr-control-error>
-              </clr-input-container>
-              <clr-input-container>
-                  <label>Apellido:</label>
-                  <input clrInput type="text" [(ngModel)]="userToCreate.lastname" name="lastname" placeholder="Apellido" required />
-                  <clr-control-error>Se requiere un apellido</clr-control-error>
-              </clr-input-container>
-              <clr-input-container>
-                  <label>Correo Electronico:</label>
-                  <input clrInput type="mail" [(ngModel)]="userToCreate.email" name="email" placeholder="Correo Electronico" required />
-                  <clr-control-error>Se requiere correo electronico</clr-control-error>
-              </clr-input-container>
-              <clr-input-container>
-                  <label>Contraseña:</label>
-                  <input clrInput type="password" [(ngModel)]="userToCreate.password" name="password" placeholder="Contraseña" required />
-                  <clr-control-error>Se requiere contraseña</clr-control-error>
-              </clr-input-container>
-  
-              <div class="modal-footer">
-                  <button class="btn btn-primary" type="submit" (click)="signUp()" #submitButton>Ok</button>
-                  <button class="btn btn-outline" type="button" (click)="isModalVisible=false">Cancel</button>
-              </div>
-  
-            </form>
-      </div>
-    </clr-modal>

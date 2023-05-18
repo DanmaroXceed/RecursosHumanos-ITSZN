@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CoreModule } from './core/core.module';
+import { PersonalComponent } from './personal/personal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -20,6 +22,7 @@ import { CoreModule } from './core/core.module';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
+    PersonalComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,8 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    NgxPaginationModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

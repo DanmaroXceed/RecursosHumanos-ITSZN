@@ -14,17 +14,10 @@ import { DatosLoginService } from '../core/servicios/datos-login.service';
 
 export class LoginComponent {
 
-
-  public userToCreate: User = {} as User
-  public created = false
-  public token: string = ""
-  //public users : User[] = [];
-  public isModalVisible = false;
-  public faltanDatos = false;
   public errorLogin = false;
 
+
   loginForm: FormGroup;
-  @ViewChild('submitButton') submitButton!: ElementRef<HTMLButtonElement>;
 
 
   constructor(private http: HttpClient, 
@@ -40,28 +33,6 @@ export class LoginComponent {
   
   }
 
-  public close() {
-    this.isModalVisible = false;
-  }
-
-  public signUp(): void {
-    if (this.userToCreate.firstname === undefined ||
-      this.userToCreate.lastname === undefined ||
-      this.userToCreate.email === undefined ||
-      this.userToCreate.password === undefined){
-      this.faltanDatos = true
-    }else{
-      this.created = true;
-      this.submitButton.nativeElement.disabled = true;
-
-      this.loginService.signUp(this.userToCreate).subscribe((
-          data: any) => {
-          this.token = data.token
-        }
-      );
-    }
-  }
-
   OnSubmit() {
     //console.log(this.loginForm.value);
     if (this.loginForm.valid) {
@@ -71,6 +42,7 @@ export class LoginComponent {
           if(data){
             this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
               data2 => {
+                // console.log(data2)
                 localStorage.setItem('usuario', JSON.stringify(data2));
               }
             );
@@ -81,11 +53,10 @@ export class LoginComponent {
             this.errorLogin = true;
           }
         });
+    }else{
+      alert('Por favor, complete todos los campos');
+      return;
     }
-  }
-
-  cerrarAlertaDeError(){
-    this.faltanDatos = false;
   }
 
   cerrarErrorLogin(){

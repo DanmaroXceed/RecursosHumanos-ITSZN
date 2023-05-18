@@ -19,7 +19,7 @@
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
               <a href="..." clrDropdownItem>Preferencias</a>
-              <a href="..." clrDropdownItem>Salir</a>
+              <a (click)="signOut()" clrDropdownItem>Salir</a>
             </clr-dropdown-menu>
           </clr-dropdown>
         </div>
@@ -48,16 +48,19 @@
     
       <div class="content-container">
     <!-- Contenido -->
-        <div class="content-area">
-            Contenido
+        <div class="content-area" [ngSwitch]="opcionSeleccionada">
+            <p *ngSwitchCase="0"> Bienvenido {{data?.name}}</p>
+            <p *ngSwitchCase="1">Notificaciones</p>
+            <p *ngSwitchCase="2">Validar</p>
+            <app-personal *ngSwitchCase="3"></app-personal>
         </div>
     <!-- Fin de Contenido -->
     
     <!-- Nav vertical -->
         <clr-vertical-nav>
-          <a clrVerticalNavLink routerLink="./charmander" routerLinkActive="active">Notificaciones</a>
-          <a clrVerticalNavLink routerLink="./jigglypuff" routerLinkActive="active">Validar</a>
-          <a clrVerticalNavLink routerLink="./pikachu" routerLinkActive="active">Personal</a>
+          <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 1">Notificaciones</a>
+          <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 2">Validar</a>
+          <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 3">Personal</a>
           <div class="nav-divider"></div>
           <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">Respaldar Informacion</a>
         </clr-vertical-nav>

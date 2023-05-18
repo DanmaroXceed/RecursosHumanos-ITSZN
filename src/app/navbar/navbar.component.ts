@@ -14,6 +14,10 @@ import { User } from 'src/models/User';
 export class NavbarComponent {
   //datos del usuario
   data: UserLogged | undefined;
+
+  opcionSeleccionada: number = 0;
+
+  
   constructor(
     public datosLoginService: DatosLoginService,
     private loginService: LoginService,
@@ -29,10 +33,10 @@ export class NavbarComponent {
   }
 
   signOut(){
-    this.loginService.SignOut().subscribe((data:any)=>{
-      console.log(data);
+    // this.loginService.SignOut().subscribe((data:any)=>{
+      // console.log(data);
       this.router.navigate(['']);
-    });
+    // });
   }
 
 }
