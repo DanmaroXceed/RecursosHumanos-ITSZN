@@ -4,7 +4,7 @@
 
 import { Injectable } from '@angular/core';
 // Se importa BehaviorSubject ya que permite compartir informacion ya emitida 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, shareReplay } from 'rxjs';
 import { UserLogged } from 'src/models/UserLogged';
 
 @Injectable({
@@ -14,9 +14,9 @@ export class DatosLoginService {
     // Crear observable default de tipo User
      observablePrivado : BehaviorSubject<UserLogged> = 
         new BehaviorSubject<UserLogged>({
-            role: 'none',
-            name: 'none',
-            email: 'none@example.com'
+            role: '',
+            name: '',
+            email: ''
         });
     
     //Obtener el observable
@@ -25,7 +25,7 @@ export class DatosLoginService {
     }
 
     // Asignar datos al observable
-    set datosObservable(data: UserLogged){
+    agregarObservable(data: UserLogged){
         this.observablePrivado.next(data);
     }
 }

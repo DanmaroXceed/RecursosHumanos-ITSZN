@@ -13,7 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CoreModule } from './core/core.module';
 import { PersonalComponent } from './personal/personal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CoreModule,
     NgxPaginationModule,
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

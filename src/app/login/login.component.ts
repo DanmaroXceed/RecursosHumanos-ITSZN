@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { User } from 'src/models/User';
 import { LoginService } from 'src/app/login/Service/login.service';
 import { HttpClient } from '@angular/common/http';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Router} from "@angular/router";
+import { FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { Router } from "@angular/router";
 import { DatosLoginService } from '../core/servicios/datos-login.service';
 import { AuthService } from '../core/servicios/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { UserLogged } from 'src/models/UserLogged';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +27,9 @@ export class LoginComponent {
               private loginService: LoginService, 
               private formBuilder: FormBuilder, 
               private router: Router,
-              //Se declara el servicio de observable 
               private datosLoginService: DatosLoginService,
-              private authService : AuthService) {
+              private authService : AuthService,
+              private cookieService : CookieService) {
     this.loginForm = this.formBuilder.group({
       login_email: ['', [Validators.required, Validators.email]],
       login_password: ['', Validators.required]
@@ -44,7 +46,11 @@ export class LoginComponent {
           if(data){
             this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
               data2 => {
-                // console.log(data2)
+                const tempData : UserLogged = JSON.parse(JSON.stringify(data2));
+                this.datosLoginService.agregarObservable(tempData);
+                //this.cookieService.set('name', tempData.name);
+                //this.cookieService.set('role', tempData.role);
+                //this.cookieService.set('email', tempData.email);
                 // localStorage.setItem("usuario", JSON.stringify(data2));
               }
             );
