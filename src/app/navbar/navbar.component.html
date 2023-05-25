@@ -14,7 +14,7 @@
         <div class="header-actions">
           <clr-dropdown>
             <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-              {{ data?.email }}
+              <!-- {{ data?.email }} -->
               <cds-icon shape="angle" direction="down"></cds-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
@@ -49,7 +49,7 @@
       <div class="content-container">
     <!-- Contenido -->
         <div class="content-area" [ngSwitch]="opcionSeleccionada">
-            <p *ngSwitchCase="0"> Bienvenido {{data?.name}}</p>
+            <p *ngSwitchCase="0"> Bienvenido <!-- {{data?.name}} --></p>
             <p *ngSwitchCase="1">Notificaciones</p>
             <p *ngSwitchCase="2">Validar</p>
             <app-personal *ngSwitchCase="3"></app-personal>

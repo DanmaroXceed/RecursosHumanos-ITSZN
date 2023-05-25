@@ -14,7 +14,7 @@ import { AuthService } from '../core/servicios/auth.service';
 })
 export class NavbarComponent {
   //datos del usuario
-  data: UserLogged | undefined;
+  //data: UserLogged | undefined;
 
   opcionSeleccionada: number = 0;
 
@@ -29,8 +29,8 @@ export class NavbarComponent {
 
   ngOnInit(): void {
     //se asigna valor a data$ mediante el servicio datosLoginService y el metodo observable que regresa sus datos
-    this.data = JSON.parse(localStorage.getItem('usuario') || "{}");
-    console.log(this.data)
+    //this.data = JSON.parse(localStorage.getItem('usuario') || "{}");
+    //console.log(this.data)
   }
 
   signOut(){

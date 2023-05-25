@@ -45,7 +45,7 @@ export class LoginComponent {
             this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
               data2 => {
                 // console.log(data2)
-                localStorage.setItem("usuario", JSON.stringify(data2));
+                // localStorage.setItem("usuario", JSON.stringify(data2));
               }
             );
             this.authService.login();
