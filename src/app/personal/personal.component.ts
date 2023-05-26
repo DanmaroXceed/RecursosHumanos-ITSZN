@@ -22,6 +22,9 @@ export class PersonalComponent implements OnInit {
   roles: string[] = ["Profesor", "Estudiante", "Administrador"];
   public registroExtendido = false;
   public usuarios : User[] = [];
+  public maxSize = 5;
+
+  p: number = 1;
 
   constructor(private loginService: LoginService) {
     this.generateUsers();
@@ -59,14 +62,26 @@ export class PersonalComponent implements OnInit {
     this.faltanDatos = false;
   }
 
+  borrarUsuario(index: number){
+    console.log(index);
+  }
+
+  modUsuario(index: number){
+    console.log(index);
+  }
+
   generateUsers() {
     for (let i = 0; i < 10; i++) {
       const user: User = {
+        id : i,
         firstname: `Usuario${i + 1}`,
         lastname: `Apellido${i + 1}`,
         email: `usuario${i + 1}@example.com`,
+        phone: (i+1)*493157,
         password: 'password123',
         role: 'Usuario',
+        curp: `USR${i + 1}2023`,
+        rfc: `USR${i + 1}000`,
         locked: false,
         verified: true,
       };

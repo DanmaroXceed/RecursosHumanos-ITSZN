@@ -1,27 +1,38 @@
 <!-- Creado por Daniel Alejandro Martinez para Residencia profesional 17/05/2023 -->
 
-<button class="btn btn-success" (click)="isModalVisible = true">
-  Agregar Personal
-</button>
+<!-- Agregar personal y controles de paginacion -->
+<div class="clr-row">
+  <div class="clr-col-sm-12 clr-col-md-4">
+    <button class="btn btn-success" (click)="isModalVisible = true">
+      Agregar Personal
+    </button>
+  </div>
+  <div class="clr-col-sm-12 clr-col-md-8">
+    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior"
+    nextLabel="Siguiente" [maxSize]="5" [responsive]="true"></pagination-controls>
+  </div>
+</div>
+<!-- fin de Controles de paginacion -->
 
 <!-- Tarjeta -->
-<div class="clr-row" *ngFor="let usuario of usuarios">
+<div class="clr-row" *ngFor="let usuario of usuarios | paginate: { itemsPerPage: 5, currentPage: p }">
   <div class="clr-col-lg-12 clr-col-md-12 clr-col-12">
     <div class="card">
       <h3 class="card-header">{{ usuario.firstname }} {{usuario.lastname}}</h3>
       <div class="card-block">
         <h4 class="card-title">Informacion:</h4>
         <div class="card-text">
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
-          <p>...</p>
+          <p>Email: {{usuario.email}}</p>
+          <p>Telefono:  {{usuario.phone}}</p>
+          <p>Rol: {{usuario.role}}</p>
+          <p>CURP:  {{usuario.curp}}</p>
+          <p>RFC: {{usuario.rfc}}</p>
         </div>
       </div>
       <!-- Botones inferiores de card -->
       <div class="btn-group btn-primary card-footer">
-        <button class="btn">Modificar</button>
-        <button class="btn btn-danger">Borrar</button>
+        <button class="btn" (click)="modUsuario(usuario.id)">Modificar</button>
+        <button class="btn btn-danger" (click)="borrarUsuario(usuario.id)">Borrar</button>
       </div>
       <!-- Fin botones inferiores -->
     </div>
@@ -192,7 +203,6 @@
               [(ngModel)]="userToCreate.phone"
               name="phone"
               placeholder="Telefono"
-              required
             />
           </clr-input-container>
         </div>
