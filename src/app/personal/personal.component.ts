@@ -15,16 +15,20 @@ export class PersonalComponent implements OnInit {
   @ViewChild("submitButton") submitButton!: ElementRef<HTMLButtonElement>;
 
   public userToCreate: User = {} as User;
+  public userToMod: User = {} as User;
   public faltanDatos = false;
   public created = false;
   public isModalVisible = false;
   public token: string = "";
-  roles: string[] = ["Profesor", "Estudiante", "Administrador"];
+  public roles: string[] = ["Profesor", "Estudiante", "Administrador"];
   public registroExtendido = false;
   public usuarios : User[] = [];
   public maxSize = 5;
+  public modificar = false;
+  public okMod = false;
 
   p: number = 1;
+  idUser: number = 1;
 
   constructor(private loginService: LoginService) {
     this.generateUsers();
@@ -56,6 +60,7 @@ export class PersonalComponent implements OnInit {
 
   public close() {
     this.isModalVisible = false;
+    this.okMod = false;
   }
 
   cerrarAlertaDeError() {
@@ -66,8 +71,11 @@ export class PersonalComponent implements OnInit {
     console.log(index);
   }
 
-  modUsuario(index: number){
-    console.log(index);
+  modUsuario(usuario: User){
+    console.log(usuario);
+  }
+
+  addDocumento(){
   }
 
   generateUsers() {
