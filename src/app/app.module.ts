@@ -14,6 +14,9 @@ import { CoreModule } from './core/core.module';
 import { PersonalComponent } from './personal/personal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CookieService } from 'ngx-cookie-service';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { CookieService } from 'ngx-cookie-service';
     HttpClientModule,
     CoreModule,
     NgxPaginationModule,
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatSelectModule
   ],
   providers: [HttpClientModule, CookieService],
   bootstrap: [AppComponent]

@@ -2,56 +2,75 @@
 
 // pestaña donde se muestra el personal registrado, asi como se permite su administracion
 
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/models/User';
-import { LoginService } from '../login/Service/login.service';
+import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { User } from "src/models/User";
+import { LoginService } from "../login/Service/login.service";
 
 @Component({
-  selector: 'app-personal',
-  templateUrl: './personal.component.html',
-  styleUrls: ['./personal.component.css']
+  selector: "app-personal",
+  templateUrl: "./personal.component.html",
+  styleUrls: ["./personal.component.css"],
 })
 export class PersonalComponent implements OnInit {
-  @ViewChild('submitButton') submitButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild("submitButton") submitButton!: ElementRef<HTMLButtonElement>;
 
-
-  public userToCreate: User = {} as User
+  public userToCreate: User = {} as User;
   public faltanDatos = false;
-  public created = false
+  public created = false;
   public isModalVisible = false;
-  public token: string = ""
+  public token: string = "";
+  roles: string[] = ["Profesor", "Estudiante", "Administrador"];
+  public registroExtendido = false;
+  public usuarios : User[] = [];
 
-  constructor(private loginService : LoginService) { 
-    
+  constructor(private loginService: LoginService) {
+    this.generateUsers();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public signUp(): void {
-    if (this.userToCreate.firstname === undefined ||
+    if (
+      this.userToCreate.firstname === undefined ||
       this.userToCreate.lastname === undefined ||
       this.userToCreate.email === undefined ||
-      this.userToCreate.password === undefined){
-      this.faltanDatos = true
-    }else{
+      this.userToCreate.password === undefined ||
+      this.userToCreate.role === undefined
+    ) {
+      this.faltanDatos = true;
+    } else {
       this.created = true;
       this.submitButton.nativeElement.disabled = true;
-
-      this.loginService.signUp(this.userToCreate).subscribe((
-          data: any) => {
-          this.token = data.token
-        }
-      );
+      // datos default par usuario
+      this.userToCreate.locked = false;
+      this.userToCreate.verified = false;
+    //   this.loginService.signUp(this.userToCreate).subscribe((data: any) => {
+    //     this.token = data.token;
+    //   });
     }
+    console.log(this.userToCreate);
   }
 
   public close() {
     this.isModalVisible = false;
   }
 
-  cerrarAlertaDeError(){
+  cerrarAlertaDeError() {
     this.faltanDatos = false;
   }
 
+  generateUsers() {
+    for (let i = 0; i < 10; i++) {
+      const user: User = {
+        firstname: `Usuario${i + 1}`,
+        lastname: `Apellido${i + 1}`,
+        email: `usuario${i + 1}@example.com`,
+        password: 'password123',
+        role: 'Usuario',
+        locked: false,
+        verified: true,
+      };
+      this.usuarios.push(user);
+    }
+  }
 }
