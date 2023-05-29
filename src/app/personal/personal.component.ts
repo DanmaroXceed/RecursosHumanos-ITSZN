@@ -12,20 +12,12 @@ import { LoginService } from "../login/Service/login.service";
   styleUrls: ["./personal.component.css"],
 })
 export class PersonalComponent implements OnInit {
-  @ViewChild("submitButton") submitButton!: ElementRef<HTMLButtonElement>;
 
-  public userToCreate: User = {} as User;
-  public userToMod: User = {} as User;
-  public faltanDatos = false;
-  public created = false;
   public isModalVisible = false;
-  public token: string = "";
-  public roles: string[] = ["Profesor", "Estudiante", "Administrador"];
   public registroExtendido = false;
   public usuarios : User[] = [];
   public maxSize = 5;
   public modificar = false;
-  public okMod = false;
 
   p: number = 1;
   idUser: number = 1;
@@ -35,48 +27,6 @@ export class PersonalComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  public signUp(): void {
-    if (
-      this.userToCreate.firstname === undefined ||
-      this.userToCreate.lastname === undefined ||
-      this.userToCreate.email === undefined ||
-      this.userToCreate.password === undefined ||
-      this.userToCreate.role === undefined
-    ) {
-      this.faltanDatos = true;
-    } else {
-      this.created = true;
-      this.submitButton.nativeElement.disabled = true;
-      // datos default par usuario
-      this.userToCreate.locked = false;
-      this.userToCreate.verified = false;
-    //   this.loginService.signUp(this.userToCreate).subscribe((data: any) => {
-    //     this.token = data.token;
-    //   });
-    }
-    console.log(this.userToCreate);
-  }
-
-  public close() {
-    this.isModalVisible = false;
-    this.okMod = false;
-  }
-
-  cerrarAlertaDeError() {
-    this.faltanDatos = false;
-  }
-
-  borrarUsuario(index: number){
-    console.log(index);
-  }
-
-  modUsuario(usuario: User){
-    console.log(usuario);
-  }
-
-  addDocumento(){
-  }
 
   generateUsers() {
     for (let i = 0; i < 10; i++) {

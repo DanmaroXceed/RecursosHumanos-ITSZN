@@ -1,39 +1,47 @@
-<div class="main-container">
-    <!-- Cabecera -->
-      <header class="header-6">
-        <div class="branding">
-          <a class="nav-link">
-<!--            <cds-icon shape="home"></cds-icon>-->
-            <span class="title">Produccion academica</span>
-          </a>
-        </div>
-        <div class="header-nav">
-          <a href="..." class="active nav-link" aria-current="page"><span class="nav-text">Sistema</span></a>
-          <a href="..." class="nav-link"><span class="nav-text">Reporteria </span></a>
-        </div>
-        <div class="header-actions">
-          <clr-dropdown>
-            <button class="nav-text" clrDropdownTrigger aria-label="open user profile">
-              {{ email }}
-              <cds-icon shape="angle" direction="down"></cds-icon>
-            </button>
-            <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-              <a href="..." clrDropdownItem>Preferencias</a>
-              <a (click)="signOut()" clrDropdownItem>Salir</a>
-            </clr-dropdown-menu>
-          </clr-dropdown>
-        </div>
-      </header>
-    <!-- Fin de Cabecera -->
-    
-    <!-- Sub Nav
+
+  <!-- Cabecera -->
+  <header class="header-6">
+    <div class="branding">
+      <a class="nav-link">
+        <!--            <cds-icon shape="home"></cds-icon>-->
+        <span class="title">Produccion academica</span>
+      </a>
+    </div>
+    <div class="header-nav">
+      <a href="..." class="active nav-link" aria-current="page"
+        ><span class="nav-text">Sistema</span></a
+      >
+      <a href="..." class="nav-link"
+        ><span class="nav-text">Reporteria </span></a
+      >
+    </div>
+    <div class="header-actions">
+      <clr-dropdown>
+        <button
+          class="nav-text"
+          clrDropdownTrigger
+          aria-label="open user profile"
+        >
+          {{ email }}
+          <cds-icon shape="angle" direction="down"></cds-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+          <a href="..." clrDropdownItem>Preferencias</a>
+          <a (click)="signOut()" clrDropdownItem>Salir</a>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+    </div>
+  </header>
+  <!-- Fin de Cabecera -->
+
+  <!-- Sub Nav -->
       <nav class="subnav">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link active" href="#" aria-current="page">Link 1</a>
+            <a class="nav-link" aria-current="page">Link 1</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link 2</a>
+            <a class="nav-link" routerLink="/personal" >Personal</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link 3</a>
@@ -43,28 +51,25 @@
           </li>
         </ul>
       </nav>
-      Fin Sub Nav -->
-    
-    
-      <div class="content-container">
-    <!-- Contenido -->
-        <div class="content-area" [ngSwitch]="opcionSeleccionada">
+    <!--   Fin Sub Nav -->
+
+  <!-- <div class="content-container"> -->
+  <!-- Contenido -->
+  <!-- <div class="content-area" [ngSwitch]="opcionSeleccionada">
             <p *ngSwitchCase="0"> Bienvenido {{name}}</p>
             <p *ngSwitchCase="1">Notificaciones</p>
             <p *ngSwitchCase="2">Validar</p>
             <app-personal *ngSwitchCase="3"></app-personal>
-        </div>
-    <!-- Fin de Contenido -->
-    
-    <!-- Nav vertical -->
-        <clr-vertical-nav>
+        </div> -->
+  <!-- Fin de Contenido -->
+
+  <!-- Nav vertical -->
+  <!-- <clr-vertical-nav>
           <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 1">Notificaciones</a>
           <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 2">Validar</a>
           <a clrVerticalNavLink routerLinkActive="active" (click)="opcionSeleccionada = 3">Personal</a>
           <div class="nav-divider"></div>
           <a clrVerticalNavLink routerLink="./credit" routerLinkActive="active">Respaldar Informacion</a>
-        </clr-vertical-nav>
-    <!-- Fin de Nav vertical -->
-      </div>
-    </div>
-    
+        </clr-vertical-nav> -->
+  <!-- Fin de Nav vertical -->
+  <!-- </div> -->
