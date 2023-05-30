@@ -7,10 +7,11 @@ export interface User {
     locked: boolean;
     newUser:boolean;
     verified:boolean;
-    password?: string;
+    password: string;
     curp?: string;
     rfc?: string;
     phone?: number;
     address?:string;
     bday?:Date;
+    cState?: string;
 }

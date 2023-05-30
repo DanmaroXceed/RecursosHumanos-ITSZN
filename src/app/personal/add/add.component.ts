@@ -101,6 +101,7 @@ export class AddComponent implements OnInit {
 
   public addUser(): void {
     // datos default par usuario
+    this.user.password = this.userService.generarContraseña();
     this.user.locked = false;
     this.user.verified = false;
     this.user.newUser = true;

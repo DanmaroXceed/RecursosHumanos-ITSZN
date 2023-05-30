@@ -35,18 +35,25 @@ export class UsersService {
         firstname: `Usuario${i + 1}`,
         lastname: `Apellido${i + 1}`,
         email: `usuario${i + 1}@example.com`,
-        phone: (i+1)*493157,
-        password: 'password123',
-        role: 'Usuario',
-        curp: `USR${i + 1}2023`,
-        rfc: `USR${i + 1}000`,
+        password: this.generarContraseña(),
+        role: 'TEACHER',
         locked: false,
         verified: true,
-        address: `Direccion${i + 1}`,
-        bday: new Date(),
         newUser: true,
       };
       this.listaUsuarios.push(user);
     }
+  }
+
+  generarContraseña(): string {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+    let contraseña = '';
+  
+    for (let i = 0; i < 9; i++) {
+      const indice = Math.floor(Math.random() * caracteres.length);
+      contraseña += caracteres.charAt(indice);
+    }
+  
+    return contraseña;
   }
 }

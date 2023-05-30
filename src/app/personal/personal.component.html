@@ -23,7 +23,12 @@
         <div class="card-block">
           <h4 class="card-title">Informacion:</h4>
           <div class="card-text">
-
+            <p>Correo: {{ usuario.email }}</p>
+            <p>Rol: {{ usuario.role }}</p>
+            <p>Contraseña: {{ usuario.password }}</p>
+            <p>Bloqueado: {{ usuario.locked }}</p>
+            <p>Verificado: {{ usuario.verified }}</p>
+            <p>Sin Primer Inicio: {{ usuario.newUser }}</p>
           </div>
         </div>
         <!-- Botones inferiores de card -->
