@@ -17,7 +17,7 @@
         </span>
         <div class="alert-actions">
           <button class="btn btn-primary" type="button" routerLink="/personal">
-            Cerrar
+            Regresar
           </button>
         </div>
       </div>
@@ -26,7 +26,7 @@
   <!-- Fin alerta de registro exitoso -->
 
   <!-- Alerta de error -->
-  <div class="alert alert-info" role="alert" *ngIf="faltanDatos">
+  <!-- <div class="alert alert-info" role="alert" *ngIf="faltanDatos">
     <div class="alert-items">
       <div class="alert-item static">
         <div class="alert-icon-wrapper">
@@ -46,149 +46,191 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- Fin alerta de error -->
 
   <!-- Inicio Form -->
-  <form clrForm>
-    <div class="clr-row">
-      <!-- Columna izquierda -->
-      <div class="clr-col-sm-12 clr-col-md-6">
-        <clr-input-container>
-          <label>Nombre:</label>
-          <input
-            clrInput
-            type="text"
-            [(ngModel)]="userToCreate.firstname"
-            name="firstname"
-            placeholder="Nombre"
-            required
-          />
-          <clr-control-error>Se requiere un nombre</clr-control-error>
-        </clr-input-container>
-        <clr-input-container>
-          <label>Apellido:</label>
-          <input
-            clrInput
-            type="text"
-            [(ngModel)]="userToCreate.lastname"
-            name="lastname"
-            placeholder="Apellido"
-            required
-          />
-          <clr-control-error>Se requiere un apellido</clr-control-error>
-        </clr-input-container>
-        <clr-input-container>
-          <label>Correo Electronico:</label>
-          <input
-            clrInput
-            type="mail"
-            [(ngModel)]="userToCreate.email"
-            name="email"
-            placeholder="Correo Electronico"
-            required
-          />
-          <clr-control-error>Se requiere correo electronico</clr-control-error>
-        </clr-input-container>
-        <clr-input-container>
-          <label>Contraseña:</label>
-          <input
-            clrInput
-            type="password"
-            [(ngModel)]="userToCreate.password"
-            name="password"
-            placeholder="Contraseña"
-            required
-          />
-          <clr-control-error>Se requiere contraseña</clr-control-error>
-        </clr-input-container>
-
-        <!-- Combo box -->
-        <clr-combobox-container>
-          <label>Rol</label>
-          <clr-combobox
-            placeholder="Seleccione un rol"
-            [(ngModel)]="userToCreate.role"
-            required
-          >
-            <clr-options>
-              <clr-option
-                *clrOptionItems="let rol of roles; field: 'label'"
-                clrvalue="rol.value"
-                >{{ rol.label }}</clr-option
-              >
-            </clr-options>
-          </clr-combobox>
-        </clr-combobox-container>
-        <!-- fin de Combo box -->
+  <form (ngSubmit)="addUser()" [formGroup]="addForm">
+    <!-- Nombre -->
+    <div>
+      <label>Nombre:</label>
+      <input
+        type="text"
+        [(ngModel)]="user.firstname"
+        name="firstname"
+        required
+        formControlName="nombre"
+      />
+      <!-- Comprobar el campo --> 
+      <div *ngIf="addForm.get('nombre')?.touched && addForm.get('nombre')?.errors?.['required']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          Campo requerido
       </div>
-      <!-- Fin columna izquierda -->
-
-      <!-- Columna derecha -->
-      <div class="clr-col-sm-12 clr-col-md-6">
-        <clr-input-container>
-          <label>CURP:</label>
-          <input
-            clrInput
-            type="text"
-            [(ngModel)]="userToCreate.curp"
-            name="curp"
-            placeholder="CURP"
-          />
-        </clr-input-container>
-        <clr-input-container>
-          <label>RFC:</label>
-          <input
-            clrInput
-            type="text"
-            [(ngModel)]="userToCreate.rfc"
-            name="rfc"
-            placeholder="RFC"
-          />
-        </clr-input-container>
-        <clr-input-container>
-          <label>Telefono:</label>
-          <input
-            clrInput
-            type="phone"
-            [(ngModel)]="userToCreate.phone"
-            name="phone"
-            placeholder="Telefono"
-          />
-        </clr-input-container>
+      <div *ngIf="addForm.get('nombre')?.touched && addForm.get('nombre')?.errors?.['minlength']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          El nombre debe ser mayor a 3 caracteres
       </div>
-      <!-- Fin Columna derecha -->
+      <!-- <div class="alert alert-danger">Campo requerido</div> -->
     </div>
+    <!-- fin Nombre -->
+
+    <!-- Apellido -->
+    <div>
+      <label>Apellido:</label>
+      <input
+        type="text"
+        [(ngModel)]="user.lastname"
+        name="lastname"
+        required
+        formControlName="apellido"
+      />
+    </div>
+    <!-- Validacion -->
+    <div *ngIf="addForm.get('apellido')?.touched && addForm.get('apellido')?.errors?.['required']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          Campo requerido
+      </div>
+      <div *ngIf="addForm.get('apellido')?.touched && addForm.get('apellido')?.errors?.['minlength']"
+        class=""
+        style="font-size: 80%; color: red;">
+          El apellido debe ser mayor a 3 caracteres
+      </div>
+    <!-- Fin apellido -->
+
+    <!-- Correo electronico -->
+    <div>
+      <label>Correo Electronico:</label>
+      <input
+        type="mail"
+        [(ngModel)]="user.email"
+        name="email"
+        required
+        formControlName="correo"
+      />
+    </div>
+    <!-- Validacion -->
+    <div *ngIf="addForm.get('correo')?.touched && addForm.get('correo')?.errors?.['required']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          Campo requerido
+      </div>
+      <div *ngIf="addForm.get('correo')?.touched && addForm.get('correo')?.errors?.['email']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          Ingresa un correo valido
+      </div>
+    <!-- Fin de correo electronico -->
+
+    <!-- Rol -->
+    <div>
+      <label>Rol</label>
+      <br />
+      <select
+        style="
+          border: 1px solid rgb(84, 84, 84);
+          width: 100%;
+          box-sizing: border-box;
+          padding: 5px;
+          border-radius: 3px;
+          margin-bottom: 5px;
+        "
+        class="form-control"
+        [(ngModel)]="user.role"
+        required
+        formControlName="rol"
+      >
+        <option *ngFor="let rol of roles" [ngValue]="rol.value">
+          {{ rol.label }}
+        </option>
+      </select>
+    </div>
+    <!-- Validacion -->
+    <div *ngIf="addForm.get('rol')?.touched && addForm.get('rol')?.errors?.['required']"
+        class=""
+        style="font-size: 80%; color: red;">
+          <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+          Campo requerido
+      </div>
+    <!-- Fin Rol -->
+
+    <!-- <div>
+      <label>Fecha de nacimiento:</label>
+      <input
+        [(ngModel)]="user.bday"
+        type="date"
+        name="FechaNac"
+        required
+      />
+    </div>
+
+    <div>
+      <label>Contraseña:</label>
+      <input
+        type="password"
+        [(ngModel)]="user.password"
+        name="password"
+        required
+      />
+    </div>
+
+    <div>
+      <label>Confirme la contraseña:</label>
+      <input
+        type="password"
+        [(ngModel)]="confirmPass"
+        name="password"
+        required
+      />
+    </div>
+
+    <div>
+      <label>CURP:</label>
+      <input
+        type="text"
+        [(ngModel)]="user.curp"
+        name="curp"
+      />
+    </div>
+    <div>
+      <label>RFC:</label>
+      <input type="text" [(ngModel)]="user.rfc" name="rfc" />
+    </div>
+
+    <div>
+      <label>Telefono:</label>
+      <input
+        type="phone"
+        [(ngModel)]="user.phone"
+        name="phone"
+      />
+    </div>
+
+    <div>
+      <label>Domicilio:</label>
+      <input
+        type="text"
+        [(ngModel)]="user.address"
+        name="text"
+      />
+    </div> -->
 
     <!-- Botones footer -->
     <div class="modal-footer">
-      <button class="btn btn-warning" type="button">Registro completo</button>
-      <button
-        class="btn btn-primary"
-        type="submit"
-        (click)="signUp()"
-        #submitButton
-      >
-        Ok
-      </button>
-      <button class="btn btn-outline" type="button" routerLink="/personal">
-        Cancel
+      <button class="btn btn-warning" type="button" #registroCompleto disabled>Registro completo</button>
+      <button class="btn btn-primary" type="submit" [disabled]="addForm.invalid" #submitButton>Ok</button>
+      <button class="btn btn-outline" type="button" #btnCancel_Regresar routerLink="/personal">
+        Cancelar
       </button>
     </div>
     <!-- Fin botones footer -->
   </form>
   <!-- Fin Form -->
-</div>
-
-<div class="example-container"> 
-  <mat-form-field>
-    <mat-label>Introduce tu email</mat-label>
-    <input
-      matInput
-      placeholder="mail@example.com"
-      [formControl]="email"
-      required
-    />
-    <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
-  </mat-form-field>
 </div>

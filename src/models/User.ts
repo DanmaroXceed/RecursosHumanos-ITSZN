@@ -3,11 +3,14 @@ export interface User {
     firstname: string;
     lastname: string;
     email: string;
-    password: string;
     role: string;
     locked: boolean;
+    newUser:boolean;
+    verified:boolean;
+    password?: string;
     curp?: string;
     rfc?: string;
     phone?: number;
-    verified:boolean;
+    address?:string;
+    bday?:Date;
 }
