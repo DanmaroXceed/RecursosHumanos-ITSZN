@@ -18,9 +18,10 @@ import { UserLogged } from 'src/models/UserLogged';
 export class LoginComponent {
   
   public errorLogin = false;
+  public mensaje : string = '';
   routeRedirect = '';
 
-  loginForm: FormGroup;
+  loginForm: FormGroup; 
 
 
   constructor(private http: HttpClient, 
@@ -38,34 +39,48 @@ export class LoginComponent {
   }
 
   OnSubmit() {
-    //console.log(this.loginForm.value);
+    //Falta testeo
     if (this.loginForm.valid) {
+      // iniciar sesion mediante servicio usando pass y correo del formulario
       this.loginService.signIn(this.loginForm.value.login_email, this.loginForm.value.login_password).subscribe(
         data => { 
           // console.log(data);
+          // si data es 1, existe el usuario
           if(data){
+            //Obtener datos del usuario
             this.loginService.getUserLogged(this.loginForm.value.login_email).subscribe(
               data2 => {
-                const tempData : UserLogged = JSON.parse(JSON.stringify(data2));
-                this.datosLoginService.agregarObservable(tempData);
-                //this.cookieService.set('name', tempData.name);
-                //this.cookieService.set('role', tempData.role);
-                //this.cookieService.set('email', tempData.email);
-                // localStorage.setItem("usuario", JSON.stringify(data2));
+                //Convertir datos a JSON con el esquema UserLogged
+                const userData : UserLogged = JSON.parse(JSON.stringify(data2));
+                // si no esta bloqueado y si esta verificado permitir acceso
+                if(!userData.locked && userData.verified){
+                  this.datosLoginService.agregarObservable(userData);
+                  //this.cookieService.set('name', userData.name);
+                  //this.cookieService.set('role', userData.role);
+                  //this.cookieService.set('email', userData.email);
+
+                  this.authService.login();
+                  this.routeRedirect = this.authService.urlUsuarioIntentaAcceder;
+                  this.authService.urlUsuarioIntentaAcceder = 'home';
+
+                  this.router.navigate([this.routeRedirect]);
+                }else{
+                  userData.locked ? this.mensaje = 'El usuario se encuentra bloqueado' : this.mensaje = 'El usuario no se encuentra verificado';
+                  this.errorLogin = true;
+                  return;
+                }
               }
             );
-            this.authService.login();
-            this.routeRedirect = this.authService.urlUsuarioIntentaAcceder;
-            this.authService.urlUsuarioIntentaAcceder = 'home';
-
-            this.router.navigate([this.routeRedirect]);
           }
           else{
+            this.mensaje = "Datos erroneos, por favor ingresa nuevamente";
             this.errorLogin = true;
+            return;      
           }
         });
     }else{
-      alert('Por favor, complete todos los campos');
+      this.mensaje = "Por favor complete la informacion";
+      this.errorLogin = true;
       return;
     }
   }

@@ -9,7 +9,7 @@
   <!-- fin agregar personal -->
 
   <!-- Tarjeta -->
-  <div
+  <!-- <div
     class="clr-row"
     *ngFor="
       let usuario of usuarios | paginate : { itemsPerPage: 5, currentPage: p }
@@ -20,6 +20,7 @@
         <h3 class="card-header">
           {{ usuario.firstname }} {{ usuario.lastname }}
         </h3>
+
         <div class="card-block">
           <h4 class="card-title">Informacion:</h4>
           <div class="card-text">
@@ -31,385 +32,73 @@
             <p>Sin Primer Inicio: {{ usuario.newUser }}</p>
           </div>
         </div>
-        <!-- Botones inferiores de card -->
+
         <div class="btn-group btn-primary card-footer">
-          <button class="btn" (click)="modificar = true">
-            Modificar
-          </button>
-          <button class="btn btn-success">Cargar documento</button>
+          <button class="btn">Modificar</button>
           <button class="btn btn-danger">Borrar</button>
         </div>
-        <!-- Fin botones inferiores -->
+
       </div>
     </div>
-  </div>
+  </div> -->
   <!-- fin Tarjeta -->
 
-  <!-- Modal Registro -->
-  <!-- <clr-modal
-    [(clrModalOpen)]="isModalVisible"
-    [clrModalSize]="'lg'"
-    #formSignUp
-  >
-    <h3 class="modal-title">Por favor ingresa la siguiente información.</h3>
-    <div class="modal-body"> -->
-      <!-- Alerta de registro exitoso -->
-      <!-- <div class="alert alert-info" role="alert" *ngIf="created">
-        <div class="alert-items">
-          <div class="alert-item static">
-            <div class="alert-icon-wrapper">
-              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
+  <!-- Acordion -->
+  <cdk-accordion class="example-accordion">
+    <cdk-accordion-item
+      *ngFor="let user of usuarios | paginate : { itemsPerPage: 5, currentPage: p }; let index = index;"
+      #accordionItem="cdkAccordionItem"
+      class="example-accordion-item"
+      role="button"
+      tabindex="0"
+      [attr.id]="'accordion-header-' + index"
+      [attr.aria-expanded]="accordionItem.expanded"
+      [attr.aria-controls]="'accordion-body-' + index"
+    >
+      <div
+        class="example-accordion-item-header"
+        (click)="accordionItem.toggle()"
+      >
+        {{ user.firstname }} {{user.lastname}}
+        <span class="example-accordion-item-description">
+          {{ accordionItem.expanded ? "contraer" : "expander" }}
+        </span>
+      </div>
+      <div
+        class="example-accordion-item-body"
+        role="region"
+        [style.display]="accordionItem.expanded ? '' : 'none'"
+        [attr.id]="'accordion-body-' + index"
+        [attr.aria-labelledby]="'accordion-header-' + index"
+      >
+      <!-- Cuerpo -->
+
+        <!-- Datos de usuario -->
+        <cdk-accordion>
+          <cdk-accordion-item #userDataAcordion="cdkAccordionItem">
+            <!-- header -->
+              <div (click)="userDataAcordion.toggle()">
+                Datos de usuario
+              </div>
+            <!-- Cuerpo -->
+            <div [style.display]="userDataAcordion.expanded ? '' : 'none'"
+            class="example-accordion-item-body">
+              <p>Correo electronico: {{user.email}}</p>
+              <p>Rol: {{user.role}}</p>
+              <p>Bloqueado: {{user.locked}}</p>
+              <p>Verificado: {{user.verified}}</p>
+              <p>Sin primer ingreso: {{user.newUser}}</p>
+              <p>Contraseña: {{user.password}}</p>
             </div>
-            <span class="alert-text"
-              >Se te ha enviado un correo eletronico de confirmacion (token
-              {{ token }}), para poder continuar con el proceso de registro.
-            </span>
-            <div class="alert-actions">
-              <button class="btn btn-primary" type="button" (click)="close()">
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- Fin alerta de registro exitoso -->
+          </cdk-accordion-item>
+        </cdk-accordion>
+        <!-- Fin datos de usuario -->
 
-      <!-- Alerta de error -->
-      <!-- <div class="alert alert-info" role="alert" *ngIf="faltanDatos">
-        <div class="alert-items">
-          <div class="alert-item static">
-            <div class="alert-icon-wrapper">
-              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-            </div>
-            <span class="alert-text"
-              >Asegura que la informacion este completa
-            </span>
-            <div class="alert-actions">
-              <button
-                class="btn btn-primary"
-                type="button"
-                (click)="cerrarAlertaDeError()"
-              >
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- Fin alerta de error -->
-      <!-- Inicio Form -->
-      <!-- <form clrForm>
-        <div class="clr-row"> -->
-          <!-- Columna izquierda -->
-          <!-- <div class="clr-col-sm-12 clr-col-md-6"> -->
-            <!-- Inputs -->
-            <!-- <clr-input-container>
-              <label>Nombre:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToCreate.firstname"
-                name="firstname"
-                placeholder="Nombre"
-                required
-              />
-              <clr-control-error>Se requiere un nombre</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label>Apellido:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToCreate.lastname"
-                name="lastname"
-                placeholder="Apellido"
-                required
-              />
-              <clr-control-error>Se requiere un apellido</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label>Correo Electronico:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="mail"
-                [(ngModel)]="userToCreate.email"
-                name="email"
-                placeholder="Correo Electronico"
-                required
-              />
-              <clr-control-error
-                >Se requiere correo electronico</clr-control-error
-              >
-            </clr-input-container>
-            <clr-input-container>
-              <label>Contraseña:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="password"
-                [(ngModel)]="userToCreate.password"
-                name="password"
-                placeholder="Contraseña"
-                required
-              />
-              <clr-control-error>Se requiere contraseña</clr-control-error>
-            </clr-input-container> -->
+      </div>
+    </cdk-accordion-item>
+  </cdk-accordion>
 
-            <!-- Combo box -->
-            <!-- <clr-combobox-container>
-              <label>Rol</label>
-              <clr-combobox
-                placeholder="Seleccione un rol"
-                style="margin-left: 0px"
-                [(ngModel)]="userToCreate.role"
-                required
-              >
-                <clr-options>
-                  <clr-option
-                    (click)="userToCreate.role = rol"
-                    *ngFor="let rol of roles"
-                    clrvalue="rol"
-                    >{{ rol }}</clr-option
-                  >
-                </clr-options>
-              </clr-combobox>
-            </clr-combobox-container> -->
-            <!-- fin de Combo box -->
-
-            <!-- fin Inputs -->
-          <!-- </div> -->
-          <!-- Fin columna izquierda -->
-          <!-- Columna derecha -->
-          <!-- <div class="clr-col-sm-12 clr-col-md-6" *ngIf="registroExtendido">
-            <clr-input-container>
-              <label>CURP:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToCreate.curp"
-                name="curp"
-                placeholder="CURP"
-              />
-            </clr-input-container>
-            <clr-input-container>
-              <label>RFC:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToCreate.rfc"
-                name="rfc"
-                placeholder="RFC"
-              />
-            </clr-input-container>
-            <clr-input-container>
-              <label>Telefono:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="phone"
-                [(ngModel)]="userToCreate.phone"
-                name="phone"
-                placeholder="Telefono"
-              />
-            </clr-input-container>
-          </div> -->
-          <!-- Fin Columna derecha -->
-        <!-- </div> -->
-
-        <!-- Botones footer -->
-        <!-- <div class="modal-footer">
-          <button
-            class="btn btn-warning"
-            type="button"
-            (click)="registroExtendido = true"
-          >
-            Registro completo
-          </button>
-          <button
-            class="btn btn-primary"
-            type="submit"
-            (click)="signUp()"
-            #submitButton
-          >
-            Ok
-          </button>
-          <button
-            class="btn btn-outline"
-            type="button"
-            (click)="isModalVisible = false"
-          >
-            Cancel
-          </button>
-        </div> -->
-        <!-- Fin botones footer -->
-      <!-- </form> -->
-      <!-- Fin Form -->
-    <!-- </div>
-  </clr-modal> -->
-  <!-- Fin Modal -->
-
-  <!-- Modal modificar -->
-  <!-- <clr-modal [(clrModalOpen)]="modificar" [clrModalSize]="'lg'" #formMod>
-    <h3 class="modal-title">Por favor ingresa la siguiente información.</h3>
-    <div class="modal-body"> -->
-      <!-- Alerta de registro exitoso -->
-      <!-- <div class="alert alert-info" role="alert" *ngIf="okMod">
-        <div class="alert-items">
-          <div class="alert-item static">
-            <div class="alert-icon-wrapper">
-              <clr-icon class="alert-icon" shape="check-circle"></clr-icon>
-            </div>
-            <span class="alert-text">Modificacion exitosa </span>
-            <div class="alert-actions">
-              <button class="btn btn-primary" type="button" (click)="close()">
-                Cerrar
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- Fin alerta de registro exitoso -->
-
-      <!-- Inicio Form -->
-      <!-- <form clrForm>
-        <div class="clr-row"> -->
-          <!-- Columna izquierda -->
-          <!-- <div class="clr-col-sm-12 clr-col-md-6"> -->
-            <!-- Inputs -->
-            <!-- <clr-input-container>
-              <label>Nombre:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToMod.firstname"
-                name="firstname"
-                placeholder="Nombre"
-                required
-              />
-              <clr-control-error>Se requiere un nombre</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label>Apellido:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToMod.lastname"
-                name="lastname"
-                placeholder="Apellido"
-                required
-              />
-              <clr-control-error>Se requiere un apellido</clr-control-error>
-            </clr-input-container>
-            <clr-input-container>
-              <label>Correo Electronico:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="mail"
-                [(ngModel)]="userToMod.email"
-                name="email"
-                placeholder="Correo Electronico"
-                required
-              />
-              <clr-control-error
-                >Se requiere correo electronico</clr-control-error
-              > 
-            </clr-input-container> -->
-
-            <!-- Combo box -->
-            <!-- <clr-combobox-container>
-              <label>Rol</label>
-              <clr-combobox
-                placeholder="Seleccione un rol"
-                style="margin-left: 0px"
-                [(ngModel)]="userToMod.role"
-                required
-              >
-                <clr-options>
-                  <clr-option
-                    (click)="userToMod.role = rol"
-                    *ngFor="let rol of roles"
-                    clrvalue="rol"
-                    >{{ rol }}</clr-option
-                  >
-                </clr-options>
-              </clr-combobox>
-            </clr-combobox-container> -->
-            <!-- fin de Combo box -->
-
-            <!-- fin Inputs -->
-          <!-- </div> -->
-          <!-- Fin columna izquierda -->
-          <!-- Columna derecha -->
-          <!-- <div class="clr-col-sm-12 clr-col-md-6">
-            <clr-input-container>
-              <label>CURP:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToMod.curp"
-                name="curp"
-                placeholder="CURP"
-              />
-            </clr-input-container>
-            <clr-input-container>
-              <label>RFC:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="text"
-                [(ngModel)]="userToMod.rfc"
-                name="rfc"
-                placeholder="RFC"
-              />
-            </clr-input-container>
-            <clr-input-container>
-              <label>Telefono:</label>
-              <input
-                style="margin-left: 20px"
-                clrInput
-                type="phone"
-                [(ngModel)]="userToMod.phone"
-                name="phone"
-                placeholder="Telefono"
-              />
-            </clr-input-container>
-          </div> -->
-          <!-- Fin Columna derecha -->
-        <!-- </div> -->
-
-        <!-- Botones footer -->
-        <!-- <div class="modal-footer">
-          <button
-            class="btn btn-primary"
-            type="submit"
-            (click)="modUsuario(userToMod)"
-            #submitButton
-          >
-            Ok
-          </button>
-          <button
-            class="btn btn-outline"
-            type="button"
-            (click)="modificar = false"
-          >
-            Cancel
-          </button>
-        </div> -->
-        <!-- Fin botones footer -->
-      <!-- </form> -->
-      <!-- Fin Form -->
-    <!-- </div> -->
-  <!-- </clr-modal> -->
-  <!-- Fin Modal -->
+  <!-- Fin acordion -->
 
   <!-- Controles de paginacion -->
   <pagination-controls
@@ -426,6 +115,6 @@
     [responsive]="true"
   ></pagination-controls>
   <!-- fin controles de paginacion -->
-  
+
   <br />
 </div>

@@ -67,8 +67,6 @@ export class AddComponent implements OnInit {
 
   // Permite ver las etiquetas html y acceder a sus propiedades
   @ViewChild("submitButton") submitButton!: ElementRef<HTMLButtonElement>;
-  @ViewChild("registroCompleto")
-  registroCompleto!: ElementRef<HTMLButtonElement>;
   @ViewChild("btnCancel_Regresar")
   btnCancel_Regresar!: ElementRef<HTMLButtonElement>;
 
@@ -108,7 +106,6 @@ export class AddComponent implements OnInit {
 
     this.created = true;
     this.faltanDatos = false;
-    this.registroCompleto.nativeElement.disabled = false;
     this.btnCancel_Regresar.nativeElement.textContent = "Regresar";
     this.submitButton.nativeElement.disabled = true;
 

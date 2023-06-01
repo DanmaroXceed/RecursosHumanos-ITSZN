@@ -18,6 +18,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AddComponent } from './personal/add/add.component';
+import { CdkAccordionModule } from '@angular/cdk/accordion';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { AddComponent } from './personal/add/add.component';
     NgxPaginationModule,
     MatFormFieldModule, 
     MatInputModule, 
-    MatSelectModule
+    MatSelectModule,
+    CdkAccordionModule,
   ],
   providers: [HttpClientModule, CookieService],
   bootstrap: [AppComponent]

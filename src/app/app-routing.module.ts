@@ -8,7 +8,7 @@ import { AddComponent } from './personal/add/add.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path:'home', component: HomeComponent, canActivate: [CanActivateGuard] },
+  { path:'home', component: HomeComponent}, //, canActivate: [CanActivateGuard] 
   { path:'personal', component: PersonalComponent},
   { path:'personal/add', component: AddComponent},
 ];

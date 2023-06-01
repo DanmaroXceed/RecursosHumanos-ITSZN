@@ -16,8 +16,8 @@
           {{ token }}), para poder continuar con el proceso de registro.
         </span>
         <div class="alert-actions">
-          <button class="btn btn-primary" type="button" routerLink="/personal">
-            Regresar
+          <button class="btn btn-primary" type="button" (click)="created=false">
+            Cerrar
           </button>
         </div>
       </div>
@@ -224,7 +224,6 @@
 
     <!-- Botones footer -->
     <div class="modal-footer">
-      <button class="btn btn-warning" type="button" #registroCompleto disabled>Registro completo</button>
       <button class="btn btn-primary" type="submit" [disabled]="addForm.invalid" #submitButton>Ok</button>
       <button class="btn btn-outline" type="button" #btnCancel_Regresar routerLink="/personal">
         Cancelar
