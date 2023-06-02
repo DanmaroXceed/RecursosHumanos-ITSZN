@@ -5,6 +5,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
 import { User } from "src/models/User";
 import { UsersService } from "../core/servicios/users.service";
+import { Router, RouterLink } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 
 @Component({ 
   selector: "app-personal",
@@ -19,12 +21,22 @@ export class PersonalComponent implements OnInit {
   p: number = 1;
   idUser: number = 1;
 
-  constructor(private usersService: UsersService) {
+  constructor(private usersService: UsersService,
+              private router: Router,
+              private cookieService: CookieService,
+    ) {
     // Verificar si es necesario clonar
-    this.usuarios = this.usersService.userList;
+    this.usersService.getUsersEnabled().subscribe((data: any) => {
+      // console.log(data)
+      this.usuarios = data;
+    })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  
+  verUsuario(email: string): void{
+    this.cookieService.set('emailUserData', email);
+    this.router.navigate(['/personal/userData']);
+  }
 }

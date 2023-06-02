@@ -28,7 +28,7 @@ export class NavbarComponent{
     private authService : AuthService,
     private cookieService : CookieService,
     ) {
-      
+
     }
 
   ngOnInit(){
@@ -48,8 +48,6 @@ export class NavbarComponent{
       }
       
     });
-
-    
   }
   
   signOut(){
@@ -62,6 +60,14 @@ export class NavbarComponent{
     this.authService.logout();
     this.cookieService.deleteAll();
     this.router.navigate(['']);
+  }
+
+  isAdmin(): boolean{
+    return this.role === 'ADMIN' ? true : false;
+  }
+
+  onHome(): boolean{
+    return window.location.href.includes('/home') ? true : false;
   }
 
 }

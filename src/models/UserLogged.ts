@@ -3,6 +3,6 @@ export interface UserLogged{
     name: string; 
     email: string;
     locked?: boolean;
-    newUser?:boolean;
-    verified?:boolean;
+    securityupdated?:boolean;
+    enabled?:boolean;
 }

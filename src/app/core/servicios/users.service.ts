@@ -1,52 +1,49 @@
 // Creado por Daniel Alejandro Martinez para Residencia profesional 29/05/2023
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
+import { environment } from 'src/environments/environment';
 import { User } from 'src/models/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-  private listaUsuarios: User[] = [];
-  private usuarioPendiente: Subject<User> = new Subject<User>;
+  private apiServerUrl = environment.apiBaseUrl;
 
-  constructor() {
-    this.generateUsers();
+  constructor(private http : HttpClient) {
+    
    }
 
-  // Obtener lista de usuarios
-  get userList(){
-    return this.listaUsuarios;
+   public getUserbyEmail(email: string): Observable<string>{
+    const params = new HttpParams().append('email', email);
+    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/findbyemail`, {params});
   }
 
-  // getUser(): User{
-  //   return this.observablePrivado.asObservable();
+  public getUsersEnabled():Observable<any>{
+    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/findbyenabled`);
+  }
+
+  // generateUsers() {
+  //   for (let i = 0; i < 10; i++) {
+  //     const user: User = {
+  //       id : i,
+  //       firstname: `Usuario${i + 1}`,
+  //       lastname: `Apellido${i + 1}`,
+  //       email: `usuario${i + 1}@example.com`,
+  //       password: this.generarContraseña(),
+  //       role: 'TEACHER',
+  //       locked: false,
+  //       verified: true,
+  //       newUser: true,
+  //     };
+  //     this.listaUsuarios.push(user);
+  //   }
   // }
 
-  // Asignar datos al observable
-  addUser(user: User){
-    this.listaUsuarios.push(user);
-  }
-
-  generateUsers() {
-    for (let i = 0; i < 10; i++) {
-      const user: User = {
-        id : i,
-        firstname: `Usuario${i + 1}`,
-        lastname: `Apellido${i + 1}`,
-        email: `usuario${i + 1}@example.com`,
-        password: this.generarContraseña(),
-        role: 'TEACHER',
-        locked: false,
-        verified: true,
-        newUser: true,
-      };
-      this.listaUsuarios.push(user);
-    }
-  }
-
   generarContraseña(): string {
-    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()';
     let contraseña = '';
   
     for (let i = 0; i < 9; i++) {

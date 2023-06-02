@@ -31,6 +31,8 @@ import {
 import { coerceBooleanProperty } from "@cds/core/internal";
 import { Subject } from "rxjs";
 import { UsersService } from "src/app/core/servicios/users.service";
+import { LoginService } from "src/app/login/Service/login.service";
+import { LoginComponent } from "src/app/login/login.component";
 import { User } from "src/models/User";
 
 @Component({
@@ -52,7 +54,8 @@ export class AddComponent implements OnInit {
 
   constructor(
     private userService: UsersService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -110,11 +113,9 @@ export class AddComponent implements OnInit {
     this.submitButton.nativeElement.disabled = true;
 
     // console.log(this.user);
-    // this.loginService.signUp(this.user).subscribe((data: any) => {
-    //    this.token = data.token;
-    // });
-    
-    this.userService.addUser(this.user);
+    this.loginService.signUp(this.user).subscribe((data: any) => {
+       this.token = data.token;
+    });
     console.log(this.user);
   }
 

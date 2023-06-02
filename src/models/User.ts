@@ -14,4 +14,6 @@ export interface User {
     address?:string;
     bday?:Date;
     cState?: string;
+    enabled?:boolean;
+    appUserRole?: string;
 }

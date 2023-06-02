@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AddComponent } from './personal/add/add.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { PreferenciasComponent } from './preferencias/preferencias.component';
+import { UserDataComponent } from './personal/user-data/user-data.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
     NavbarComponent,
     PersonalComponent,
     AddComponent,
+    PreferenciasComponent,
+    UserDataComponent,
   ],
   imports: [
     BrowserModule,

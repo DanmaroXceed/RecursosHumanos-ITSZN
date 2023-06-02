@@ -1,7 +1,7 @@
 <!-- Creado por Daniel Alejandro Martinez para Residencia profesional 17/05/2023 -->
 <app-navbar></app-navbar>
 
-<div style="margin: 20px">
+<div style="padding: 20px">
   <!-- Agregar personal -->
   <button class="btn btn-success" routerLink="/personal/add">
     Agregar Personal
@@ -43,62 +43,15 @@
   </div> -->
   <!-- fin Tarjeta -->
 
-  <!-- Acordion -->
-  <cdk-accordion class="example-accordion">
-    <cdk-accordion-item
-      *ngFor="let user of usuarios | paginate : { itemsPerPage: 5, currentPage: p }; let index = index;"
-      #accordionItem="cdkAccordionItem"
-      class="example-accordion-item"
-      role="button"
-      tabindex="0"
-      [attr.id]="'accordion-header-' + index"
-      [attr.aria-expanded]="accordionItem.expanded"
-      [attr.aria-controls]="'accordion-body-' + index"
-    >
-      <div
-        class="example-accordion-item-header"
-        (click)="accordionItem.toggle()"
-      >
-        {{ user.firstname }} {{user.lastname}}
-        <span class="example-accordion-item-description">
-          {{ accordionItem.expanded ? "contraer" : "expander" }}
-        </span>
-      </div>
-      <div
-        class="example-accordion-item-body"
-        role="region"
-        [style.display]="accordionItem.expanded ? '' : 'none'"
-        [attr.id]="'accordion-body-' + index"
-        [attr.aria-labelledby]="'accordion-header-' + index"
-      >
-      <!-- Cuerpo -->
+  <!-- Lista de usuarios -->
+  <div class="usuarios">
+    <a *ngFor="let usuario of usuarios | paginate : { itemsPerPage: 5, currentPage: p }"
+    (click)="verUsuario((usuario.email).toString())">
+      {{usuario.firstname}} {{usuario.lastname}}
+    </a>
+  </div>
 
-        <!-- Datos de usuario -->
-        <cdk-accordion>
-          <cdk-accordion-item #userDataAcordion="cdkAccordionItem">
-            <!-- header -->
-              <div (click)="userDataAcordion.toggle()">
-                Datos de usuario
-              </div>
-            <!-- Cuerpo -->
-            <div [style.display]="userDataAcordion.expanded ? '' : 'none'"
-            class="example-accordion-item-body">
-              <p>Correo electronico: {{user.email}}</p>
-              <p>Rol: {{user.role}}</p>
-              <p>Bloqueado: {{user.locked}}</p>
-              <p>Verificado: {{user.verified}}</p>
-              <p>Sin primer ingreso: {{user.newUser}}</p>
-              <p>Contraseña: {{user.password}}</p>
-            </div>
-          </cdk-accordion-item>
-        </cdk-accordion>
-        <!-- Fin datos de usuario -->
-
-      </div>
-    </cdk-accordion-item>
-  </cdk-accordion>
-
-  <!-- Fin acordion -->
+  <!-- Fin Lista de usuarios -->
 
   <!-- Controles de paginacion -->
   <pagination-controls

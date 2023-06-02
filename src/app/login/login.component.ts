@@ -53,16 +53,18 @@ export class LoginComponent {
                 //Convertir datos a JSON con el esquema UserLogged
                 const userData : UserLogged = JSON.parse(JSON.stringify(data2));
                 // si no esta bloqueado y si esta verificado permitir acceso
-                if(!userData.locked && userData.verified){
+                console.log(userData)
+                if((userData.locked && userData.enabled) || userData.role === "ADMIN"){
                   this.datosLoginService.agregarObservable(userData);
-                  //this.cookieService.set('name', userData.name);
-                  //this.cookieService.set('role', userData.role);
-                  //this.cookieService.set('email', userData.email);
+                  this.cookieService.set('name', userData.name);
+                  this.cookieService.set('role', userData.role);
+                  this.cookieService.set('email', userData.email);
 
                   this.authService.login();
                   this.routeRedirect = this.authService.urlUsuarioIntentaAcceder;
                   this.authService.urlUsuarioIntentaAcceder = 'home';
 
+                  
                   this.router.navigate([this.routeRedirect]);
                 }else{
                   userData.locked ? this.mensaje = 'El usuario se encuentra bloqueado' : this.mensaje = 'El usuario no se encuentra verificado';
