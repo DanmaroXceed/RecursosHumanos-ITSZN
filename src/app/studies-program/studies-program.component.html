@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<form class="studies-program" [formGroup]="spform">
+<form class="studies-program">
     <button class="btn btn-outline" (click)="isModalVisible=true">Nuevo</button>
     <clr-datagrid>
         <!--<clr-dg-column>ID</clr-dg-column>-->
@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="isModalVisible = false">Ok</button>
+            <button type="button" class="btn btn-primary" (click)="onAdd(); isModalVisible = false">Ok</button>
         </div>
 </clr-modal>
 

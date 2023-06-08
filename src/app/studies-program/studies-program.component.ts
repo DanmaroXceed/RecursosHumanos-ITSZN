@@ -11,6 +11,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class StudiesProgramComponent {
 
+  public created = false;
+  public token : any;
   public studiesprograms: StudiesProgram[]=[];
   public spToCreate: StudiesProgram = {} as StudiesProgram;
   public isModalVisible = false;
@@ -34,10 +36,11 @@ export class StudiesProgramComponent {
         );
   }
 
-  onAdd(sp:StudiesProgram){
-    this.studiesProgramService.addStudiesProgram(sp).subscribe(
-    (data:any)=>{this.spToCreate = data;}
-    );
+  onAdd(){
+    this.studiesProgramService.addStudiesProgram(this.spToCreate).subscribe(
+        data => { this.token = data;
+          this.created = true;
+        });
     this.getAllStudiesPrograms();
   }
 
