@@ -1,0 +1,35 @@
+<app-preferences></app-preferences>
+<form class="studies-program" [formGroup]="spform">
+    <button class="btn btn-outline" (click)="isModalVisible=true">Nuevo</button>
+    <clr-datagrid>
+        <!--<clr-dg-column>ID</clr-dg-column>-->
+        <clr-dg-column>Programa de Estudio</clr-dg-column>
+        <clr-dg-row *clrDgItems="let sp of studiesprograms" [clrDgItem]="sp" >
+            <!--<clr-dg-cell>{{sp.id}}</clr-dg-cell> -->
+            <clr-dg-cell>{{sp.studiesProgramName}}</clr-dg-cell>
+            <clr-dg-action-overflow>
+                <button class="action-item" (click)="onEdit(sp)">Editar</button>
+                <button class="action-item" (click)="onDelete(sp)">Eliminar</button>
+            </clr-dg-action-overflow>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{studiesprograms.length}} Programas de Estudio</clr-dg-footer>
+    </clr-datagrid>
+</form>
+
+
+<clr-modal [(clrModalOpen)]="isModalVisible">
+        <h3 class="modal-title">Programas de estudio</h3>
+        <div class="modal-body">
+            <clr-input-container>
+                <label>First name:</label>
+                <input clrInput type="text" [(ngModel)]="spToCreate.studiesProgramName" name="firstname" placeholder="Nombre del Programa de Estudios" required />
+                <clr-control-error>Describa el nombre del nuevo programa de estudios</clr-control-error>
+            </clr-input-container>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
+            <button type="button" class="btn btn-primary" (click)="isModalVisible = false">Ok</button>
+        </div>
+</clr-modal>
+

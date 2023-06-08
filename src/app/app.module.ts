@@ -18,6 +18,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AddComponent } from './personal/add/add.component';
+import { PreferencesComponent } from './preferences/preferences.component';
+import {StudiesProgramComponent} from "./studies-program/studies-program.component";
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { AddComponent } from './personal/add/add.component';
     NavbarComponent,
     PersonalComponent,
     AddComponent,
+    PreferencesComponent,
+    StudiesProgramComponent,
   ],
   imports: [
     BrowserModule,
