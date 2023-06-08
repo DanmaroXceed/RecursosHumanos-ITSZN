@@ -21,6 +21,7 @@ import { AddComponent } from './personal/add/add.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { PreferenciasComponent } from './preferencias/preferencias.component';
 import { UserDataComponent } from './personal/user-data/user-data.component';
+import { StudiesProgramComponent } from './studies-program/studies-program.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UserDataComponent } from './personal/user-data/user-data.component';
     AddComponent,
     PreferenciasComponent,
     UserDataComponent,
+    StudiesProgramComponent,
   ],
   imports: [
     BrowserModule,

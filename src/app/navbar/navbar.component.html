@@ -36,8 +36,8 @@
   <!-- Sub Nav -->
       <nav class="subnav" *ngIf="!onHome()">
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page">Link 1</a>
+          <li class="nav-item" *ngIf="isAdmin()">
+            <a class="nav-link" routerLink="/programasEstudio">Programas de estudio</a>
           </li>
           <li class="nav-item" *ngIf="isAdmin()" >
             <a class="nav-link" routerLink="/personal">Personal</a>
