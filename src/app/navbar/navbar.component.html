@@ -1,56 +1,53 @@
+<!-- Cabecera -->
+<header class="header-6">
+  <div class="branding">
+    <a class="nav-link" routerLink="/home">
+      <!--            <cds-icon shape="home"></cds-icon>-->
+      <span class="title">Produccion academica</span>
+    </a>
+  </div>
+  <div class="header-nav">
+    <a *ngIf="isAdmin()" class="nav-link" aria-current="page" routerLink="/preferencias"
+      ><span class="nav-text">Preferencias</span></a
+    >
+    <a routerLink="/informacion" class="nav-link"
+      ><span class="nav-text">Mi informacion</span></a
+    >
+    <a *ngIf="isAdmin()" href="..." class="nav-link"
+      ><span class="nav-text">Reporteria </span></a
+    >
+  </div>
 
-  <!-- Cabecera -->
-  <header class="header-6">
-    <div class="branding">
-      <a class="nav-link" routerLink="/home">
-        <!--            <cds-icon shape="home"></cds-icon>-->
-        <span class="title">Produccion academica</span>
-      </a>
-    </div>
-    <div class="header-nav">
-      <a *ngIf="isAdmin()" class="nav-link" aria-current="page" routerLink="/preferencias"
-        ><span class="nav-text">Preferencias</span></a
+  <div class="header-actions">
+    <clr-dropdown>
+      <button
+        class="nav-text"
+        clrDropdownTrigger
+        aria-label="open user profile"
       >
-      <a *ngIf="isAdmin()" href="..." class="nav-link"
-        ><span class="nav-text">Reporteria </span></a
-      >
-    </div>
-    <div class="header-actions">
-      <clr-dropdown>
-        <button
-          class="nav-text"
-          clrDropdownTrigger
-          aria-label="open user profile"
-        >
-          {{ email }}
-          <cds-icon shape="angle" direction="down"></cds-icon>
-        </button>
-        <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
-          <a (click)="signOut()" clrDropdownItem>Salir</a>
-        </clr-dropdown-menu>
-      </clr-dropdown>
-    </div>
-  </header>
-  <!-- Fin de Cabecera -->
+        {{ email }}
+        <cds-icon shape="angle" direction="down"></cds-icon>
+      </button>
+      <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+        <a (click)="signOut()" clrDropdownItem>Salir</a>
+      </clr-dropdown-menu>
+    </clr-dropdown>
+  </div>
+</header>
+<!-- Fin de Cabecera -->
 
-  <!-- Sub Nav -->
-      <nav class="subnav" *ngIf="!onHome()">
-        <ul class="nav">
-          <li class="nav-item" *ngIf="isAdmin()">
-            <a class="nav-link" routerLink="/programasEstudio">Programas de estudio</a>
-          </li>
-          <li class="nav-item" *ngIf="isAdmin()" >
-            <a class="nav-link" routerLink="/personal">Personal</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 3</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link 4</a>
-          </li>
-        </ul>
-      </nav>
-    <!--   Fin Sub Nav -->
+<!-- Sub Nav -->
+  <nav class="subnav" *ngIf="onPref() && isAdmin()">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/preferencias/programasEstudio">Programas de estudio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/preferencias/personal">Personal</a>
+      </li>
+    </ul>
+  </nav>
+<!--   Fin Sub Nav -->
 
   <!-- <div class="content-container"> -->
   <!-- Contenido -->

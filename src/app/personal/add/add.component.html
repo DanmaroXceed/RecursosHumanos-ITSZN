@@ -63,13 +63,11 @@
       />
       <!-- Comprobar el campo --> 
       <div *ngIf="addForm.get('nombre')?.touched && addForm.get('nombre')?.errors?.['required']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           Campo requerido
       </div>
       <div *ngIf="addForm.get('nombre')?.touched && addForm.get('nombre')?.errors?.['minlength']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           El nombre debe ser mayor a 3 caracteres
@@ -91,13 +89,11 @@
     </div>
     <!-- Validacion -->
     <div *ngIf="addForm.get('apellido')?.touched && addForm.get('apellido')?.errors?.['required']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           Campo requerido
       </div>
       <div *ngIf="addForm.get('apellido')?.touched && addForm.get('apellido')?.errors?.['minlength']"
-        class=""
         style="font-size: 80%; color: red;">
           El apellido debe ser mayor a 3 caracteres
       </div>
@@ -116,13 +112,11 @@
     </div>
     <!-- Validacion -->
     <div *ngIf="addForm.get('correo')?.touched && addForm.get('correo')?.errors?.['required']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           Campo requerido
       </div>
       <div *ngIf="addForm.get('correo')?.touched && addForm.get('correo')?.errors?.['email']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           Ingresa un correo valido
@@ -154,7 +148,6 @@
     </div>
     <!-- Validacion -->
     <div *ngIf="addForm.get('rol')?.touched && addForm.get('rol')?.errors?.['required']"
-        class=""
         style="font-size: 80%; color: red;">
           <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
           Campo requerido

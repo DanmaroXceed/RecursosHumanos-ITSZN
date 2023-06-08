@@ -11,20 +11,22 @@ import { User } from 'src/models/User';
 })
 export class UserDataComponent {
   email!: string;
+  nombre!: string;
   usuario!:User;
 
+  public cstates: { label: string; value: string }[] = [
+    { label: "Soltero", value: "soltero" },
+    { label: "Casado", value: "casado" },
+    { label: "Otro", value: "otro" },
+  ];
+
   constructor(private cookieService : CookieService,
-              private router : Router,
               private userService : UsersService){
-    this.email = this.cookieService.get('emailUserData')
+    this.email = this.cookieService.get('email')
+    this.nombre = this.cookieService.get('name')
 
-    this.userService.getUserbyEmail(this.email).subscribe((data:any) => {
-      console.log(data)
-    })
-  }
-
-  regresar():void{
-    this.cookieService.delete('idUserData');
-    this.router.navigate(['/personal']);
+    // this.userService.getUserbyEmail(this.email).subscribe((data:any) => {
+    //   console.log(data)
+    // })
   }
 }

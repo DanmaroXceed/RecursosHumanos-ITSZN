@@ -44,12 +44,26 @@
   <!-- fin Tarjeta -->
 
   <!-- Lista de usuarios -->
-  <div class="usuarios">
+  <!-- <div class="usuarios">
     <a *ngFor="let usuario of usuarios | paginate : { itemsPerPage: 5, currentPage: p }"
     (click)="verUsuario((usuario.email).toString())">
       {{usuario.firstname}} {{usuario.lastname}}
     </a>
-  </div>
+  </div> -->
+
+  <clr-datagrid >
+    <!--<clr-dg-column>ID</clr-dg-column>-->
+    <clr-dg-row *clrDgItems="let usuario of usuarios | paginate : { itemsPerPage: 5, currentPage: p }" [clrDgItem]="usuario" >
+        <!--<clr-dg-cell>{{sp.id}}</clr-dg-cell> -->
+        <clr-dg-cell (click)="verUsuario((usuario.email).toString())">{{usuario.firstname}} {{usuario.lastname}}</clr-dg-cell>
+        <clr-dg-action-overflow>
+            <button class="action-item" (click)="true">Editar</button>
+            <button class="action-item" (click)="true">Eliminar</button>
+        </clr-dg-action-overflow>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{usuarios.length}} Usuario(s)</clr-dg-footer>
+  </clr-datagrid>
 
   <!-- Fin Lista de usuarios -->
 

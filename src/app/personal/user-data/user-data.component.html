@@ -1,9 +1,77 @@
-<app-navbar></app-navbar>
+<form>
+    <div class="clr-row">
+        <div class="clr-col-sm-12 clr-col-md-3">
+            <div class="texto-input">Nombre:</div>
+            <div class="texto-input">Fecha de nacimiento:</div>
+            <div class="texto-input">CURP:</div>
+            <div class="texto-input">RFC:</div>
+            <div class="texto-input">Domicilio:</div>
+            <div class="texto-input">Telefono:</div>
+            <div class="texto-input">Correo Electronico:</div>
+            <div class="texto-input">Estado civil:</div>
+            <div class="texto-input">INE:</div>
+        </div>
+        <div class="clr-col-sm-12 clr-col-md-6">
+            <div>
+                <input
+                class="ancho-input"
+                type="text"
+                formControlName="nombre"
+                [(ngModel)]="nombre"
+                value="{{nombre}}"
+                />
+            </div>  
+            <div>
+                <input
+                class="ancho-input"
+                type="date"
+                formControlName="FechaNac"
+                />
+            </div>  
+            <div>
+                <input
+                class="ancho-input"
+                type="text"
+                formControlName="curp"
+                />
+            </div>  
+            <div>
+                <input
+                class="ancho-input"
+                type="text"
+                formControlName="rfc"
+                />
+            </div>  
+            <div>
+                <input
+                class="ancho-input"
+                type="text"
+                formControlName="domicilio"
+                />
+            </div>  
+            <div><input
+                class="ancho-input"
+                type="number"
+                formControlName="telefono"
+                /></div>  
+            <div><span
+                class="ancho-input"
+              >{{email}}</span>
+            </div>  
+            <div>
+                <select
+                    class="form-control ancho-input"
+                    formControlName="rol"
+                >
+                    <option *ngFor="let state of cstates" [ngValue]="state.value">
+                    {{ state.label }}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <input class="ancho-input" type="file" />
+            </div>
+        </div>
+    </div>
+</form>
 
-<div style="padding: 20px;"> {{email}}</div>
-
-<div style="padding: 20px;">
-    <button (click)="regresar()">
-        Regresar
-    </button>
-</div>

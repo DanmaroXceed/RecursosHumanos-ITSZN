@@ -1,7 +1,8 @@
 <app-navbar></app-navbar>
 <form class="studies-program">
-    <button class="btn btn-outline" (click)="isModalVisible=true">Nuevo</button>
-    <clr-datagrid>
+    <button class="btn btn-outline" (click)="isModalVisible=true"
+    style="margin: 15px;">Nuevo</button>
+    <clr-datagrid style="margin-left: 15px; margin-right: 15px;">
         <!--<clr-dg-column>ID</clr-dg-column>-->
         <clr-dg-column>Programa de Estudio</clr-dg-column>
         <clr-dg-row *clrDgItems="let sp of studiesprograms" [clrDgItem]="sp" >

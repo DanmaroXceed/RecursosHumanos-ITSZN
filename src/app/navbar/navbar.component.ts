@@ -66,8 +66,8 @@ export class NavbarComponent{
     return this.role === 'ADMIN' ? true : false;
   }
 
-  onHome(): boolean{
-    return window.location.href.includes('/home') ? true : false;
+  onPref(): boolean{
+    return window.location.href.includes('/preferencias') ? true : false;
   }
 
 }
