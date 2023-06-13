@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<form class="studies-program">
+<div>
     <button class="btn btn-outline" (click)="isModalVisible=true"
     style="margin: 15px;">Nuevo</button>
     <clr-datagrid style="margin-left: 15px; margin-right: 15px;">
@@ -16,21 +16,33 @@
 
         <clr-dg-footer>{{studiesprograms.length}} Programas de Estudio</clr-dg-footer>
     </clr-datagrid>
-</form>
 
+    <form (ngSubmit)="onAdd()" [formGroup]="spform">
+        <clr-modal [(clrModalOpen)]="isModalVisible">
+            <h3 class="modal-title">Nuevo programa</h3>
+            <div class="modal-body">
+                <clr-input-container>
+                    <input clrInput type="text" [(ngModel)]="spToCreate.studiesProgramName" placeholder="Nombre del Programa de Estudios" required formControlName="sp" />
+                </clr-input-container>
 
-<clr-modal [(clrModalOpen)]="isModalVisible">
-        <h3 class="modal-title">Programas de estudio</h3>
-        <div class="modal-body">
-            <clr-input-container>
-                <label>First name:</label>
-                <input clrInput type="text" [(ngModel)]="spToCreate.studiesProgramName" name="firstname" placeholder="Nombre del Programa de Estudios" required />
-                <clr-control-error>Describa el nombre del nuevo programa de estudios</clr-control-error>
-            </clr-input-container>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="onAdd(); isModalVisible = false">Ok</button>
-        </div>
-</clr-modal>
+                <!-- Comprobar el campo --> 
+                <div *ngIf="spform.get('sp')?.touched && spform.get('sp')?.errors?.['required']"
+                style="font-size: 80%; color: red;">
+                    <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+                    Campo requerido
+                </div>
+                <div *ngIf="spform.get('sp')?.touched && spform.get('sp')?.errors?.['minlength']"
+                style="font-size: 80%; color: red;">
+                    <!-- <i class="bi bi-exclamation-triangle-fill"></i> -->
+                    El nombre debe ser mayor a 3 caracteres
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button"  class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
+                <button type="submit" class="btn btn-primary" [disabled]="spform.invalid" #submitButton>Ok</button>
+            </div>
+        </clr-modal>
+    </form>
+</div>
 

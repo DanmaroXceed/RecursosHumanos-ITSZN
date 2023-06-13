@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import {StudiesProgram} from "../../models/StudiesProgram";
 import {StudiesProgramService} from "./studies-program.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-studies-program',
@@ -11,42 +11,50 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class StudiesProgramComponent {
 
-  public created = false;
   public token : any;
   public studiesprograms: StudiesProgram[]=[];
   public spToCreate: StudiesProgram = {} as StudiesProgram;
   public isModalVisible = false;
-  spform : FormGroup;
+  spform! : FormGroup;
+  @ViewChild("submitButton") submitButton!: ElementRef<HTMLButtonElement>;
+
+  initForm(): FormGroup {
+    return this.formBuilder.group({
+      sp: new FormControl("", [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ])
+    });
+  }
 
   ngOnInit(): void{
       this.isModalVisible=false;
-      this.getAllStudiesPrograms();
+      this.spform = this.initForm();
   }
 
   constructor(private studiesProgramService: StudiesProgramService, private formBuilder:FormBuilder) {
-    this.spform = this.formBuilder.group({
-
-    });
+    this.getAllStudiesPrograms();
   }
 
   public getAllStudiesPrograms():void {
     this.studiesProgramService.getAllStudiesProgram().subscribe(
-        (response: StudiesProgram[])=>{this.studiesprograms = response;},
-        (error:HttpErrorResponse)=>{alert(error.message)}
+        (response: StudiesProgram[])=>{this.studiesprograms = response;}
         );
   }
 
   onAdd(){
     this.studiesProgramService.addStudiesProgram(this.spToCreate).subscribe(
-        data => { this.token = data;
-          this.created = true;
+        data => { 
+          this.token = data;
         });
-    this.getAllStudiesPrograms();
+    this.isModalVisible=false;
+    this.studiesprograms.push(this.spToCreate)
   }
 
-    onEdit(sp: StudiesProgram) {
-        
-    }
+  onEdit(sp: StudiesProgram) {
+      
+  }
 
   onDelete(sp: StudiesProgram) {
     

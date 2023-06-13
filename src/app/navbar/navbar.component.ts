@@ -17,6 +17,7 @@ import { startWith } from 'rxjs/operators';
 export class NavbarComponent{
   public name! : string;
   public role! : string;
+  public Rol! : string;
   public email! : string;
 
   opcionSeleccionada: number = 0;
@@ -37,15 +38,17 @@ export class NavbarComponent{
         this.name = usuario.name;
         this.role = usuario.role;
         this.email = usuario.email;
-  
+
         this.cookieService.set('name', this.name);
         this.cookieService.set('role', this.role);
         this.cookieService.set('email', this.email);
+
       }else{
         this.name = this.cookieService.get('name');
         this.role = this.cookieService.get('role');
         this.email = this.cookieService.get('email');
       }
+      this.Rol = this.showRole(this.role)
       
     });
   }
@@ -60,6 +63,23 @@ export class NavbarComponent{
     this.authService.logout();
     this.cookieService.deleteAll();
     this.router.navigate(['']);
+  }
+
+  showRole(role : string): string{
+    switch (role) {
+      case 'ADMIN':
+        return 'Administrador'
+        break;
+      case 'TEACHER':
+        return 'Profesor'
+        break;
+      case 'STUDENT':
+        return 'Alumno'
+        break;
+      default:
+        return 'Invitado'
+        break;
+    }
   }
 
   isAdmin(): boolean{

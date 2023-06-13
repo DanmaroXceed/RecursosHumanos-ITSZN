@@ -91,14 +91,14 @@ export class AddComponent implements OnInit {
     });
   }
 
-  canAddUser(): boolean {
-    return !this.addForm.hasError("required") ||
-      !this.addForm.hasError("email") ||
-      !this.addForm.hasError("minlength") ||
-      !this.addForm.hasError("maxlength")
-      ? true
-      : false;
-  }
+  // canAddUser(): boolean {
+  //   return !this.addForm.hasError("required") ||
+  //     !this.addForm.hasError("email") ||
+  //     !this.addForm.hasError("minlength") ||
+  //     !this.addForm.hasError("maxlength")
+  //     ? true
+  //     : false;
+  // }
 
   public addUser(): void {
     // datos default par usuario
