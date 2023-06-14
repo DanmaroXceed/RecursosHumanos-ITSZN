@@ -1,13 +1,33 @@
-.ancho-input{
-    width: 75%;
-    height: 85%;
-    margin: 5px;
-}
-
-.texto-input{
-    margin-bottom: 4.5%;
-}
-/* 
-*{
+/* *{
     border: solid black 1px;
 } */
+
+.boton{
+    margin-top: -10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    display: grid;
+    justify-content: left;
+}
+
+.contenido{
+display: flex;
+justify-content: left;
+align-items: start;
+text-align: left;
+padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .contenido, .boton {
+        flex-direction: column;
+    }
+}
+
+.noBullet{
+    margin-left: 10px;
+    list-style-type: none;
+}
+.input{
+    height: 20px;
+}

@@ -1,77 +1,167 @@
-<form>
-    <div class="clr-row">
-        <div class="clr-col-sm-12 clr-col-md-3">
-            <div class="texto-input">Nombre:</div>
-            <div class="texto-input">Fecha de nacimiento:</div>
-            <div class="texto-input">CURP:</div>
-            <div class="texto-input">RFC:</div>
-            <div class="texto-input">Domicilio:</div>
-            <div class="texto-input">Telefono:</div>
-            <div class="texto-input">Correo Electronico:</div>
-            <div class="texto-input">Estado civil:</div>
-            <div class="texto-input">INE:</div>
+<div class="boton">
+    <button type="button" class="btn btn-primary" (click)="editar=true" *ngIf="!editar">Editar</button>
+    <button type="button" class="btn btn-primary" (click)="editar=false" *ngIf="editar">Guardar</button>
+</div>
+
+<div class="contenido">
+    <ul class="noBullet">
+        <li>Nombre:</li>
+        <li>Fecha de nacimiento:</li>
+        <li>CURP:</li>
+        <li>RFC:</li>
+        <li>Domicilio:</li>
+        <li>Telefono:</li>
+        <li>Correo Electronico:</li>
+        <li>Estado civil:</li>
+        <li>INE:</li>
+    </ul>
+    <ul class="noBullet" *ngIf="!editar">
+        <li>{{nombre}}</li>
+        <li>---</li>
+        <li>---</li>
+        <li>---</li>
+        <li>---</li>
+        <li>---</li>
+        <li>---</li>
+        <li>---</li>
+        <li><button class="btn btn-sm btn-outline">mostrar</button></li>
+    </ul>
+    <ul class="noBullet" *ngIf="editar">
+        <li>
+            <input
+            class="input"
+            type="text"
+            formControlName="nombre"
+            [(ngModel)]="nombre"
+            value="{{nombre}}"
+            />
+        </li>
+        <li>
+            <input
+            class="input"
+            type="date"
+            formControlName="FechaNac"
+            />
+        </li>
+        <li>
+            <input
+            class="input"
+            type="text"
+            formControlName="curp"
+            />
+        </li>
+        <li>
+            <input
+            class="input"
+            type="text"
+            formControlName="rfc"
+            />
+        </li>
+        <li>
+            <input
+            class="input"
+            type="text"
+            formControlName="domicilio"
+            />
+        </li>
+        <li>
+            <input
+            class="input"
+            type="number"
+            formControlName="telefono"
+            />
+        </li>
+        <li value="{{email}}">
+        </li>
+        <li>
+            <select
+                class="input"
+                formControlName="rol"
+            >
+                <option *ngFor="let state of cstates" [ngValue]="state.value">
+                {{ state.label }}
+                </option>
+            </select>
+        </li>
+        <li>
+            <input type="file">
+        </li>
+        <li>
+            <button class="btn btn-outline" style="margin-top: 50px;" (click)="editar=false">Cancelar</button>
+        </li>
+    </ul>
+</div>
+<!-- <div class="clr-row">
+    <div class="clr-col-sm-12 clr-col-md-6">
+        <div class="texto-input">Nombre:</div>
+        <div class="texto-input">Fecha de nacimiento:</div>
+        <div class="texto-input">CURP:</div>
+        <div class="texto-input">RFC:</div>
+        <div class="texto-input">Domicilio:</div>
+        <div class="texto-input">Telefono:</div>
+        <div class="texto-input">Correo Electronico:</div>
+        <div class="texto-input">Estado civil:</div>
+        <div class="texto-input">INE:</div>
+    </div>
+    <div class="clr-col-sm-12 clr-col-md-6">
+        <div>
+            <input
+            class="ancho-input"
+            type="text"
+            formControlName="nombre"
+            [(ngModel)]="nombre"
+            value="{{nombre}}"
+            />
+        </div>  
+        <div>
+            <input
+            class="ancho-input"
+            type="date"
+            formControlName="FechaNac"
+            />
+        </div>  
+        <div>
+            <input
+            class="ancho-input"
+            type="text"
+            formControlName="curp"
+            />
+        </div>  
+        <div>
+            <input
+            class="ancho-input"
+            type="text"
+            formControlName="rfc"
+            />
+        </div>  
+        <div>
+            <input
+            class="ancho-input"
+            type="text"
+            formControlName="domicilio"
+            />
+        </div>  
+        <div><input
+            class="ancho-input"
+            type="number"
+            formControlName="telefono"
+            /></div>  
+        <div><span
+            class="ancho-input"
+            >{{email}}</span>
+        </div>  
+        <div>
+            <select
+                class="form-control ancho-input"
+                formControlName="rol"
+            >
+                <option *ngFor="let state of cstates" [ngValue]="state.value">
+                {{ state.label }}
+                </option>
+            </select>
         </div>
-        <div class="clr-col-sm-12 clr-col-md-6">
-            <div>
-                <input
-                class="ancho-input"
-                type="text"
-                formControlName="nombre"
-                [(ngModel)]="nombre"
-                value="{{nombre}}"
-                />
-            </div>  
-            <div>
-                <input
-                class="ancho-input"
-                type="date"
-                formControlName="FechaNac"
-                />
-            </div>  
-            <div>
-                <input
-                class="ancho-input"
-                type="text"
-                formControlName="curp"
-                />
-            </div>  
-            <div>
-                <input
-                class="ancho-input"
-                type="text"
-                formControlName="rfc"
-                />
-            </div>  
-            <div>
-                <input
-                class="ancho-input"
-                type="text"
-                formControlName="domicilio"
-                />
-            </div>  
-            <div><input
-                class="ancho-input"
-                type="number"
-                formControlName="telefono"
-                /></div>  
-            <div><span
-                class="ancho-input"
-              >{{email}}</span>
-            </div>  
-            <div>
-                <select
-                    class="form-control ancho-input"
-                    formControlName="rol"
-                >
-                    <option *ngFor="let state of cstates" [ngValue]="state.value">
-                    {{ state.label }}
-                    </option>
-                </select>
-            </div>
-            <div>
-                <input class="ancho-input" type="file" />
-            </div>
+        <div>
+            <input class="ancho-input" type="file" />
         </div>
     </div>
-</form>
-
+</div> -->
