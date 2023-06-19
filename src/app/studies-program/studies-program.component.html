@@ -9,7 +9,7 @@
             <clr-dg-cell>{{sp.studiesProgramName}}</clr-dg-cell>
             <clr-dg-action-overflow>
                 <button class="action-item" (click)="onEdit(sp)">Editar</button>
-                <button class="action-item" (click)="onDelete(sp)">Eliminar</button>
+                <button class="action-item" (click)="onDelete(sp.id)">Eliminar</button>
             </clr-dg-action-overflow>
         </clr-dg-row>
 
@@ -22,14 +22,14 @@
         <h3 class="modal-title">Programas de estudio</h3>
         <div class="modal-body">
             <clr-input-container>
-                <label>First name:</label>
-                <input clrInput type="text" [(ngModel)]="spToCreate.studiesProgramName" name="firstname" placeholder="Nombre del Programa de Estudios" required />
+                <label>Programa educativo:</label>
+                <input clrInput type="text" [(ngModel)]="spToCreate.studiesProgramName" name="studiesProgramName" placeholder="Nombre del Programa de Estudios" required />
                 <clr-control-error>Describa el nombre del nuevo programa de estudios</clr-control-error>
             </clr-input-container>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline" (click)="isModalVisible = false">Cancel</button>
-            <button type="button" class="btn btn-primary" (click)="isModalVisible = false">Ok</button>
+            <button type="button" class="btn btn-primary" (click)="onAdd(spToCreate); isModalVisible = false;">Ok</button>
         </div>
 </clr-modal>
 
