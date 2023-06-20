@@ -48,7 +48,7 @@ export class AddComponent implements OnInit {
   public faltanDatos = false;
   public roles: { label: string; value: string }[] = [
     { label: "Profesor", value: "TEACHER" },
-    { label: "Alumno", value: "STUDENT" },
+    // { label: "Alumno", value: "STUDENT" },
     { label: "Administrador", value: "ADMIN" },
   ];
 

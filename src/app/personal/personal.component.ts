@@ -26,7 +26,7 @@ export class PersonalComponent implements OnInit {
               private cookieService: CookieService,
     ) {
     // Verificar si es necesario clonar
-    this.usersService.getUsersEnabled().subscribe((data: any) => {
+    this.usersService.getUsersEnabledByRole('TEACHER').subscribe((data: any) => {
       // console.log(data)
       this.usuarios = data;
     })
@@ -36,7 +36,7 @@ export class PersonalComponent implements OnInit {
   }
 
   verUsuario(email: string): void{
-    this.cookieService.set('emailUserData', email);
+    // this.cookieService.set('emailUserData', email);
     this.router.navigate(['/personal/userData']);
   }
 }
