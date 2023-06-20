@@ -1,6 +1,5 @@
 <div class="boton">
-    <button type="button" class="btn btn-primary" (click)="editar=true" *ngIf="!editar">Editar</button>
-    <button type="button" class="btn btn-primary" (click)="editar=false" *ngIf="editar">Guardar</button>
+    <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
 </div>
 
 <div class="contenido">
@@ -15,18 +14,20 @@
         <li>Estado civil:</li>
         <li>INE:</li>
     </ul>
-    <ul class="noBullet" *ngIf="!editar">
+    <ul class="noBullet">
         <li>{{nombre}}</li>
-        <li>---</li>
-        <li>---</li>
-        <li>---</li>
-        <li>---</li>
-        <li>---</li>
-        <li>---</li>
-        <li>---</li>
+        <li>WIP</li>
+        <li>WIP</li>
+        <li>WIP</li>
+        <li>WIP</li>
+        <li>WIP</li>
+        <li>{{email}}</li>
+        <li>WIP</li>
         <li><button class="btn btn-sm btn-outline">mostrar</button></li>
     </ul>
-    <ul class="noBullet" *ngIf="editar">
+
+
+    <!-- <ul class="noBullet">
         <li>
             <input
             class="input"
@@ -71,8 +72,7 @@
             formControlName="telefono"
             />
         </li>
-        <li value="{{email}}">
-        </li>
+            {{email}}
         <li>
             <select
                 class="input"
@@ -89,7 +89,9 @@
         <li>
             <button class="btn btn-outline" style="margin-top: 50px;" (click)="editar=false">Cancelar</button>
         </li>
-    </ul>
+    </ul> -->
+
+
 </div>
 <!-- <div class="clr-row">
     <div class="clr-col-sm-12 clr-col-md-6">

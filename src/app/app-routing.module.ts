@@ -9,6 +9,7 @@ import { PreferenciasComponent } from './preferencias/preferencias.component';
 import { UserDataComponent } from './personal/user-data/user-data.component';
 import { StudiesProgramComponent } from "./studies-program/studies-program.component";
 import { InformacionComponent } from './informacion/informacion.component';
+import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path:'informacion', component: InformacionComponent, canActivate: [CanActivateGuard],
     children:[
       { path:'dPersonales', component: UserDataComponent, canActivate: [CanActivateGuard]},
+      { path: 'updPersonales', component: UpdUserDataComponent, canActivate: [CanActivateGuard]}
     ]},
   
 ];

@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="main-container">
+<div class="main-container" >
     <div class="content-container">
         <clr-vertical-nav>
             <a clrVerticalNavLink routerLink="./dPersonales" routerLinkActive="active">Datos personales</a>
@@ -9,7 +9,7 @@
             <a clrVerticalNavLink routerLink="./dExamEval" routerLinkActive="active">Examenes de evaluacion</a>
             <a clrVerticalNavLink routerLink="./dExpLab" routerLinkActive="active">Experiencia laboral</a>
         </clr-vertical-nav>
-        <div class="content-area">
+        <div class="content-area" style="overflow: hidden;">
             <router-outlet></router-outlet>
         </div>
     </div>

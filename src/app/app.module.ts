@@ -23,6 +23,8 @@ import { PreferenciasComponent } from './preferencias/preferencias.component';
 import { UserDataComponent } from './personal/user-data/user-data.component';
 import { StudiesProgramComponent } from './studies-program/studies-program.component';
 import { InformacionComponent } from './informacion/informacion.component';
+import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { InformacionComponent } from './informacion/informacion.component';
     UserDataComponent,
     StudiesProgramComponent,
     InformacionComponent,
+    UpdUserDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +55,7 @@ import { InformacionComponent } from './informacion/informacion.component';
     MatInputModule, 
     MatSelectModule,
     CdkAccordionModule,
+    NgxExtendedPdfViewerModule,
   ],
   providers: [HttpClientModule, CookieService],
   bootstrap: [AppComponent]

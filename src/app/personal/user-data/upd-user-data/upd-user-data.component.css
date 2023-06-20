@@ -1,0 +1,62 @@
+/* *{
+    border: solid black 1px;
+} */
+
+.contenido{
+    /* border: 1px black dotted; */
+    display: flex;
+    justify-content: center;
+    align-items: flex;
+    text-align: left;
+    height: fit-content;
+}
+
+.formulario{
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+    border-radius: 1%;
+    background-color: rgb(225, 225, 225);
+    box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.3);
+
+}
+
+.input{
+    margin: 0px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .contenido, .drop-file {
+        flex-direction: column;
+    }
+}
+
+.drop-file{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+
+}
+
+.file{
+    position: relative;
+    border: 1px black dotted;
+    opacity: 0;
+    padding-top: -10px;
+    width: 100%;
+    height: 200px;
+    bottom: 72%;
+}
+
+h5{
+    padding: 15px;
+    margin-top: -5px;
+    margin-bottom: -30px;
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    border-bottom: 1px black;
+}

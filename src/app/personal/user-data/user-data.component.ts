@@ -9,11 +9,11 @@ import { User } from 'src/models/User';
   templateUrl: './user-data.component.html',
   styleUrls: ['./user-data.component.css']
 })
+
 export class UserDataComponent {
   email!: string;
   nombre!: string;
   usuario!:User;
-  editar: boolean = false;
 
   public cstates: { label: string; value: string }[] = [
     { label: "Soltero", value: "soltero" },
