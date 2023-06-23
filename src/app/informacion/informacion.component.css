@@ -1,0 +1,13 @@
+.info{
+    order: 1;
+    position:flex;
+    width:100%;
+    max-width: 100%;
+    background: #00364dba;
+}
+
+.info-text{
+    padding: 5%;
+    text-align: center;
+    color: white;
+}

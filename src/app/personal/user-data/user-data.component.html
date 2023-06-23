@@ -1,169 +1,30 @@
-<div class="boton">
-    <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
-</div>
-
-<div class="contenido">
-    <ul class="noBullet">
-        <li>Nombre:</li>
-        <li>Fecha de nacimiento:</li>
-        <li>CURP:</li>
-        <li>RFC:</li>
-        <li>Domicilio:</li>
-        <li>Telefono:</li>
-        <li>Correo Electronico:</li>
-        <li>Estado civil:</li>
-        <li>INE:</li>
-    </ul>
-    <ul class="noBullet">
-        <li>{{nombre}}</li>
-        <li>{{usuario.fechNac}}</li>
-        <li>{{usuario.curp}}</li>
-        <li>{{usuario.rfc}}</li>
-        <li>{{usuario.domicilio}}</li>
-        <li>{{usuario.telefono}}</li>
-        <li>{{email}}</li>
-        <li>{{usuario.estadoCiv}}</li>
-        <li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>
-    </ul>
-
-
-    <!-- <ul class="noBullet">
-        <li>
-            <input
-            class="input"
-            type="text"
-            formControlName="nombre"
-            [(ngModel)]="nombre"
-            value="{{nombre}}"
-            />
-        </li>
-        <li>
-            <input
-            class="input"
-            type="date"
-            formControlName="FechaNac"
-            />
-        </li>
-        <li>
-            <input
-            class="input"
-            type="text"
-            formControlName="curp"
-            />
-        </li>
-        <li>
-            <input
-            class="input"
-            type="text"
-            formControlName="rfc"
-            />
-        </li>
-        <li>
-            <input
-            class="input"
-            type="text"
-            formControlName="domicilio"
-            />
-        </li>
-        <li>
-            <input
-            class="input"
-            type="number"
-            formControlName="telefono"
-            />
-        </li>
-            {{email}}
-        <li>
-            <select
-                class="input"
-                formControlName="rol"
-            >
-                <option *ngFor="let state of cstates" [ngValue]="state.value">
-                {{ state.label }}
-                </option>
-            </select>
-        </li>
-        <li>
-            <input type="file">
-        </li>
-        <li>
-            <button class="btn btn-outline" style="margin-top: 50px;" (click)="editar=false">Cancelar</button>
-        </li>
-    </ul> -->
-
-
-</div>
-<!-- <div class="clr-row">
-    <div class="clr-col-sm-12 clr-col-md-6">
-        <div class="texto-input">Nombre:</div>
-        <div class="texto-input">Fecha de nacimiento:</div>
-        <div class="texto-input">CURP:</div>
-        <div class="texto-input">RFC:</div>
-        <div class="texto-input">Domicilio:</div>
-        <div class="texto-input">Telefono:</div>
-        <div class="texto-input">Correo Electronico:</div>
-        <div class="texto-input">Estado civil:</div>
-        <div class="texto-input">INE:</div>
+<div class="contenedor-padre">
+    <div class="contenido">
+        <ul style="list-style-type: none">
+            <li>Nombre:</li>
+            <li>Fecha de nacimiento:</li>
+            <li>CURP:</li>
+            <li>RFC:</li>
+            <li>Domicilio:</li>
+            <li>Telefono:</li>
+            <li>Correo Electronico:</li>
+            <li>Estado civil:</li>
+            <li>INE:</li>
+    
+            <div class="boton">
+                <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
+            </div>
+        </ul>
+        <ul class="noBullet">
+            <li>{{nombre}}</li>
+            <li>{{usuario.fechNac}}</li>
+            <li>{{usuario.curp}}</li>
+            <li>{{usuario.rfc}}</li>
+            <li>{{usuario.domicilio}}</li>
+            <li>{{usuario.telefono}}</li>
+            <li>{{email}}</li>
+            <li>{{usuario.estadoCiv}}</li>
+            <li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>
+        </ul> 
     </div>
-    <div class="clr-col-sm-12 clr-col-md-6">
-        <div>
-            <input
-            class="ancho-input"
-            type="text"
-            formControlName="nombre"
-            [(ngModel)]="nombre"
-            value="{{nombre}}"
-            />
-        </div>  
-        <div>
-            <input
-            class="ancho-input"
-            type="date"
-            formControlName="FechaNac"
-            />
-        </div>  
-        <div>
-            <input
-            class="ancho-input"
-            type="text"
-            formControlName="curp"
-            />
-        </div>  
-        <div>
-            <input
-            class="ancho-input"
-            type="text"
-            formControlName="rfc"
-            />
-        </div>  
-        <div>
-            <input
-            class="ancho-input"
-            type="text"
-            formControlName="domicilio"
-            />
-        </div>  
-        <div><input
-            class="ancho-input"
-            type="number"
-            formControlName="telefono"
-            /></div>  
-        <div><span
-            class="ancho-input"
-            >{{email}}</span>
-        </div>  
-        <div>
-            <select
-                class="form-control ancho-input"
-                formControlName="rol"
-            >
-                <option *ngFor="let state of cstates" [ngValue]="state.value">
-                {{ state.label }}
-                </option>
-            </select>
-        </div>
-        <div>
-            <input class="ancho-input" type="file" />
-        </div>
-    </div>
-</div> -->
+</div>

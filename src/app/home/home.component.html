@@ -1,3 +1,23 @@
 <app-navbar></app-navbar>
 
-<h1 style="align-self: auto;"> Bienvenido {{name}}</h1 >
+<div class="home">
+    <h3 class="home-text"> 
+        ¡Bienvenido a nuestro sistema de generación de currículums escolares {{name}}! <br> <br>
+        Carga archivos e información personal del personal docente para crear currículums públicos y privados. Puedes hacerlo personalmente o solicitarlo al departamento de Recursos Humanos. Nuestra plataforma intuitiva te permite ingresar experiencia, formación académica, habilidades destacadas y adjuntar documentos adicionales. Simplifica el proceso y destaca tus capacidades profesionales con nuestro sistema de generación de currículums escolares. <br><br>
+        ¡Comienza hoy mismo e impulsa tu carrera educativa!
+    </h3>
+</div>
+
+<div><h4>
+    Algunos de los curriculum generados: <br>
+</h4></div>
+
+<div class="contenedor-tarjetas">
+    <div class="card" *ngFor="let item of items">
+        <div class="card-image"></div>
+        <div class="category"> Curriculum vitae publico </div>
+        <div class="heading"> {{item.propietario}}
+            <!-- <div class="author"> By <span class="name">Abi</span> 4 days ago</div> -->
+        </div>
+    </div>
+</div>

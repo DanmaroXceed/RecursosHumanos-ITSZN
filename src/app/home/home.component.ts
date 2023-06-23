@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../core/servicios/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { DatosLoginService } from '../core/servicios/datos-login.service';
+import { tarjeta } from 'src/models/tarjeta.model';
 
 
 @Component({
@@ -11,6 +12,12 @@ import { DatosLoginService } from '../core/servicios/datos-login.service';
 })
 export class HomeComponent implements OnInit {
   name!: string;
+  items : tarjeta[] = [
+    {propietario: 'Daniel Martinez'},
+    {propietario: 'Manuel Mendez'},
+    {propietario: 'Arturo Ortega'},
+    {propietario: 'Jose Gutierrez'},
+  ]
 
   constructor(
     private authService : AuthService,

@@ -40,13 +40,13 @@ export class ChgPassComponent {
   }
 
   chgPass(){ 
-    try{
-      this.loginService.changePassword(this.cookieService.get('email'), this.pass)
-      .subscribe(data =>{
-        console.log(data);
+    // try{
+    //   this.loginService.changePassword(this.cookieService.get('email'), this.pass)
+    //   .subscribe(data =>{
+    //     console.log(data);
         this.router.navigate(['home']);
-      })
-    }catch(error){}
+      // })
+    // }catch(error){}
     
   }
 

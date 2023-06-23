@@ -2,15 +2,24 @@
 <div class="main-container" >
     <div class="content-container">
         <clr-vertical-nav>
-            <a clrVerticalNavLink routerLink="./dPersonales" routerLinkActive="active">Datos personales</a>
-            <a clrVerticalNavLink routerLink="./dAcademicos" routerLinkActive="active">Datos academicos</a>
-            <a clrVerticalNavLink routerLink="./dCategorias" routerLinkActive="active">Datos de categorias</a>
-            <a clrVerticalNavLink routerLink="./dServProf" routerLinkActive="active">Servicios profecionales</a>
-            <a clrVerticalNavLink routerLink="./dExamEval" routerLinkActive="active">Examenes de evaluacion</a>
-            <a clrVerticalNavLink routerLink="./dExpLab" routerLinkActive="active">Experiencia laboral</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dPersonales" routerLinkActive="active">Datos personales</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dAcademicos" routerLinkActive="active">Datos academicos</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dCategorias" routerLinkActive="active">Datos de categorias</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dServProf" routerLinkActive="active">Servicios profecionales</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dExamEval" routerLinkActive="active">Examenes de evaluacion</a>
+            <a clrVerticalNavLink (click)="info=false" routerLink="./dExpLab" routerLinkActive="active">Experiencia laboral</a>
         </clr-vertical-nav>
         <div class="content-area" >
             <router-outlet></router-outlet>
+            <div class="info" *ngIf="info">
+                <h3 class="info-text"> 
+                    La sección de Info es un espacio personalizado donde podrás mostrar toda tu información relevante, incluyendo datos académicos, experiencia laboral, servicios profesionales y mucho más. 
+                    Esta sección te brinda la flexibilidad de modificar y actualizar tu información para crear un completo currículum vitae en línea. 
+                    Una vez que hayas realizado los cambios, tu perfil será enviado a un administrador para su validación. 
+                    Una vez aprobado, podrás generar un currículum vitae profesional con tan solo un clic. 
+                    La sección de Info es un recurso esencial para todo lo relacionado con tu trayectoria académica.
+                </h3>
+            </div>
         </div>
     </div>
 </div>

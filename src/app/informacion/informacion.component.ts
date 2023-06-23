@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./informacion.component.css']
 })
 export class InformacionComponent {
+  info: boolean;
 
+  constructor(){
+    this.info = true
+  }
 }
