@@ -1,0 +1,56 @@
+<div class="contenido">
+    <form class="formulario" (ngSubmit)="chgPass()" [formGroup]="chgPassForm">
+        <div ><h3 class="titulo">
+            Por favor introduzca la nueva contraseña
+        </h3></div>
+
+        <mat-form-field class="input">
+            <mat-label>Contraseña</mat-label>
+            <input matInput autocomplete formControlName="pass" type="password" [(ngModel)]="pass">
+            <!-- Comprobar el campo --> 
+            <div *ngIf="chgPassForm.get('pass')?.touched && 
+                        chgPassForm.get('pass')?.errors?.['required']"
+            style="font-size: 80%; color: red;">
+                Campo requerido
+            </div>
+            <div *ngIf="chgPassForm.get('pass')?.errors?.['minlength']"
+            style="font-size: 80%; color: red;">
+                La contraseña debe ser mayor a 8 caracteres
+            </div>
+            <div *ngIf="chgPassForm.get('pass')?.errors?.['maxlength']"
+            style="font-size: 80%; color: red;">
+                La contraseña debe ser menor a 12 caracteres
+            </div>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field class="input">
+            <mat-label>Confirmar contraseña:</mat-label>
+            <input matInput autocomplete formControlName="passConfirm" type="password" [(ngModel)]="passConfirm">
+            <!-- Comprobar el campo --> 
+            <div *ngIf="chgPassForm.get('passConfirm')?.touched && 
+                        chgPassForm.get('passConfirm')?.errors?.['required']"
+            style="font-size: 80%; color: red;">
+                Campo requerido
+            </div>
+            <div *ngIf="chgPassForm.get('passConfirm')?.errors?.['minlength']"
+            style="font-size: 80%; color: red;">
+                La contraseña debe ser mayor a 8 caracteres
+            </div>
+            <div *ngIf="chgPassForm.get('passConfirm')?.errors?.['maxlength']"
+            style="font-size: 80%; color: red;">
+                La contraseña debe ser menor a 12 caracteres
+            </div>
+        </mat-form-field>
+
+        <div *ngIf="pass !== passConfirm" style="font-size: 80%; color: red;">
+            Las contraseñas deben ser iguales
+        </div>
+
+        <div>
+            <button class="btn btn-success" type="submit" #submitButton mat-raised-button [disabled]="chgPassForm.invalid || pass !== passConfirm">Guardar</button>
+            <button class="btn btn-warning" mat-raised-button routerLink="/">Cancelar</button> 
+        </div>
+    </form>
+</div>

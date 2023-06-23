@@ -10,6 +10,7 @@ import { UserDataComponent } from './personal/user-data/user-data.component';
 import { StudiesProgramComponent } from "./studies-program/studies-program.component";
 import { InformacionComponent } from './informacion/informacion.component';
 import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
+import { ChgPassComponent } from './chg-pass/chg-pass.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path:'dPersonales', component: UserDataComponent, canActivate: [CanActivateGuard]},
       { path: 'updPersonales', component: UpdUserDataComponent, canActivate: [CanActivateGuard]}
     ]},
+  { path:'cambio-contr', component: ChgPassComponent, canActivate: [CanActivateGuard]},
   
 ];
 

@@ -5,7 +5,7 @@
 import { Injectable } from '@angular/core';
 // Se importa BehaviorSubject ya que permite compartir informacion ya emitida 
 import { BehaviorSubject, shareReplay } from 'rxjs';
-import { UserLogged } from 'src/models/UserLogged';
+import { UserLogged } from 'src/models/UserLogged.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +16,10 @@ export class DatosLoginService {
         new BehaviorSubject<UserLogged>({
             role: '',
             name: '',
-            email: ''
+            email: '',
+            locked: 'false',
+            securityupdated: 'true',
+            enabled: 'true'
         });
     
     //Obtener el observable

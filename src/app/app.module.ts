@@ -25,6 +25,7 @@ import { StudiesProgramComponent } from './studies-program/studies-program.compo
 import { InformacionComponent } from './informacion/informacion.component';
 import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ChgPassComponent } from './chg-pass/chg-pass.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     StudiesProgramComponent,
     InformacionComponent,
     UpdUserDataComponent,
+    ChgPassComponent,
   ],
   imports: [
     BrowserModule,

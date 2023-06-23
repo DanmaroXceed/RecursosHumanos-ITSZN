@@ -3,7 +3,7 @@ import { DatosLoginService } from '../core/servicios/datos-login.service';
 import { Observable, pipe } from "rxjs";
 import { LoginService } from '../login/Service/login.service';
 import { Router } from '@angular/router';
-import { UserLogged } from 'src/models/UserLogged';
+import { UserLogged } from 'src/models/UserLogged.model';
 import { User } from 'src/models/User';
 import { AuthService } from '../core/servicios/auth.service';
 import { CookieService } from 'ngx-cookie-service';

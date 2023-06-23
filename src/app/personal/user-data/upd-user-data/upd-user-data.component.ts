@@ -11,13 +11,6 @@ import { personalData } from 'src/models/personalData';
 })
 
 export class UpdUserDataComponent implements OnInit {
-  nombre!: string;
-  fechaNac!: Date;
-  curp!: string;
-  rfc!: string;
-  domicilio!: string;
-  telefono!: number;
-  estadoCiv!: string;
   ine!:File | undefined;
 
   datos: personalData = {} as personalData;

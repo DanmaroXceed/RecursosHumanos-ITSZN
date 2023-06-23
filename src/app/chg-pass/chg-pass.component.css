@@ -1,0 +1,35 @@
+.contenido{
+    /* border: 1px black dotted; */
+    display: flex;
+    justify-content: center;
+    align-items:flex-start;
+    text-align: left;
+    height:auto;
+    padding-top: 10%;
+}
+
+.formulario{
+    padding: 10px;
+    width: 50%;
+    height: 100%;
+    border-radius: 1%;
+    background-color: rgb(225, 225, 225);
+    box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.3);
+
+}
+
+.input{
+    margin: 0px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .contenido, .drop-file {
+        flex-direction: column;
+    }
+}
+
+.titulo{
+    margin-bottom: 5%;
+    text-align: center;
+}
