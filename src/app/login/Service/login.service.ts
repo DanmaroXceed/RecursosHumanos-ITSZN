@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from 'src/models/User';
 import { environment } from 'src/environments/environment';
-import { Observable } from "rxjs";
+import { Observable, catchError } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,10 @@ export class LoginService {
 
   public SignOut():Observable<any>{
     return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/logout`);
+  }
+
+  public changePassword(email: string, npass:string):Observable<any>{
+    return this.http.patch(`${this.apiServerUrl}/api/v1/registration/updatepassword/${email}/${npass}`,{})
   }
 
 }

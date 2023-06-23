@@ -37,7 +37,7 @@ export class LoginComponent {
     });
     
     this.authService.logout()
-
+    this.cookieService.deleteAll()
   }
 
   OnSubmit() {

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../login/Service/login.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-chg-pass',
@@ -14,7 +16,9 @@ export class ChgPassComponent {
   chgPassForm!: FormGroup;  
   
   constructor(private formBuilder : FormBuilder,
-              private router : Router){}
+              private router : Router,
+              private loginService: LoginService,
+              private cookieService : CookieService){}
 
   ngOnInit(): void {
     this.chgPassForm = this.initForm();
@@ -36,7 +40,14 @@ export class ChgPassComponent {
   }
 
   chgPass(){ 
-    this.router.navigate(['home']);
+    try{
+      this.loginService.changePassword(this.cookieService.get('email'), this.pass)
+      .subscribe(data =>{
+        console.log(data);
+        this.router.navigate(['home']);
+      })
+    }catch(error){}
+    
   }
 
 }
