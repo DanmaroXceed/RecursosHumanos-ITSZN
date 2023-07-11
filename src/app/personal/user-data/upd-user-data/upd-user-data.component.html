@@ -1,104 +1,72 @@
 <div class="contenido">
-        <form class="formulario" (ngSubmit)="updPersonalData()" [formGroup]="updPersonalesForm">
+        <form class="formulario" (ngSubmit)="updPersonalData()" [formGroup]="updPersonalForm">
 
             <mat-form-field class="input">
                 <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre" [(ngModel)]="datos.nombre">
+                <input matInput formControlName="fullname" [(ngModel)]="data.fullname">
                 <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('nombre')?.touched && 
-                            updPersonalesForm.get('nombre')?.errors?.['required']"
+                <div *ngIf="updPersonalForm.get('fullname')?.touched &&
+                            updPersonalForm.get('fullname')?.errors?.['required']"
                 style="font-size: 80%; color: red;">
-                    Campo requerido
+                    Campo obligatorio
                 </div>
-                <div *ngIf="updPersonalesForm.get('nombre')?.errors?.['minlength']"
+                <div *ngIf="updPersonalForm.get('fullname')?.errors?.['minlength']"
                 style="font-size: 80%; color: red;">
                     El nombre debe ser mayor a 3 caracteres
                 </div>
             </mat-form-field>
     
             <br>
-    
+
             <mat-form-field class="input">
                 <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput type="date" formControlName="fechaNac" [(ngModel)]="datos.fechNac">
-                <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('fechaNac')?.touched && 
-                            updPersonalesForm.get('fechaNac')?.errors?.['required']"
+                <input matInput type="date" formControlName="birthdate" [(ngModel)]="data.birthdate">
+
+                <div *ngIf="updPersonalForm.get('birthdate')?.touched &&
+                            updPersonalForm.get('birthdate')?.errors?.['required']"
                 style="font-size: 80%; color: red;">
-                    Campo requerido
+                    Campo obligatorio
                 </div>
             </mat-form-field>
-    
+
             <br>
-    
-            <mat-form-field class="input">
-                <mat-label>CURP</mat-label>
-                <input matInput formControlName="curp" [(ngModel)]="datos.curp">
-                <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('curp')?.touched && 
-                            updPersonalesForm.get('curp')?.errors?.['required']"
-                style="font-size: 80%; color: red;">
-                    Campo requerido
-                </div>
-                <div *ngIf="updPersonalesForm.get('curp')?.errors?.['pattern']"
-                style="font-size: 80%; color: red;">
-                    Formato incorrecto
-                </div>
-            </mat-form-field>
-    
+
+            <h5>CURP</h5>
+            <div class="drop-file" *ngIf="!curp">
+                <h2>Arrastre un archivo</h2>
+                <h4>O</h4>
+                <h4 class="btn btn-sm btn-outline">seleccione el archivo</h4>
+                <input type="file"  (change)="getFile($event)" class="file" accept=".pdf" formControlName="curpfile" id="curpfile"/>
+
+            </div>
+            <div id="preview" class="drop-file" style="height: 80px;" *ngIf="curp">
+                <p>Archivo cargado con exito: {{curp.name}}</p>
+                <button (click)="curp = undefined" class="btn btn-sm btn-outline-warning">Eliminar archivo</button>
+            </div>
+
             <br>
-    
+
             <mat-form-field class="input">
-                <mat-label>RFC</mat-label>
-                <input matInput formControlName="rfc" [(ngModel)]="datos.rfc">
-                <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('rfc')?.touched && 
-                            updPersonalesForm.get('rfc')?.errors?.['required']"
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="phone" [(ngModel)]="data.phone">
+
+                <div *ngIf="updPersonalForm.get('phone')?.touched &&
+                            updPersonalForm.get('phone')?.errors?.['required']"
                 style="font-size: 80%; color: red;">
-                    Campo requerido.
+                    Campo obligatorio.
                 </div>
-                <div *ngIf="updPersonalesForm.get('rfc')?.errors?.['pattern']"
-                style="font-size: 80%; color: red;">
-                    Formato incorrecto
-                </div>
-            </mat-form-field>
-    
-            <br>
-    
-            <mat-form-field class="input">
-                <mat-label>Domicilio</mat-label>
-                <input matInput formControlName="domicilio" [(ngModel)]="datos.domicilio">
-                <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('domicilio')?.touched && 
-                            updPersonalesForm.get('domicilio')?.errors?.['required']"
-                style="font-size: 80%; color: red;">
-                    Campo requerido.
-                </div>
-            </mat-form-field>
-    
-            <br>
-    
-            <mat-form-field class="input">
-                <mat-label>Telefono</mat-label>
-                <input matInput formControlName="telefono" [(ngModel)]="datos.telefono">
-                <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('telefono')?.touched && 
-                            updPersonalesForm.get('telefono')?.errors?.['required']"
-                style="font-size: 80%; color: red;">
-                    Campo requerido.
-                </div>
-                <div *ngIf="updPersonalesForm.get('telefono')?.touched && 
-                            updPersonalesForm.get('telefono')?.errors?.['minlength']"
+                <div *ngIf="updPersonalForm.get('phone')?.touched &&
+                            updPersonalForm.get('phone')?.errors?.['minlength']"
                 style="font-size: 80%; color: red;">
                     Al menos 10 digitos.
                 </div>
-                <div *ngIf="updPersonalesForm.get('telefono')?.touched && 
-                            updPersonalesForm.get('telefono')?.errors?.['maxlength']"
+                <div *ngIf="updPersonalForm.get('phone')?.touched &&
+                            updPersonalForm.get('phone')?.errors?.['maxlength']"
                 style="font-size: 80%; color: red;">
                     Maximo 10 digitos.
                 </div>
             </mat-form-field>
-    
+
             <br>
     
             <mat-form-field class="input">
@@ -110,38 +78,23 @@
     
             <mat-form-field class="input">
                 <mat-label>Estado civil</mat-label>
-                <mat-select formControlName="estadoCivil" [(ngModel)]="datos.estadoCiv">
+                <mat-select formControlName="civilstatus" [(ngModel)]="data.civilstatus">
                   <mat-option *ngFor="let cs of cstates" [value]="cs.value">
                     {{cs.label}}
                   </mat-option>
                 </mat-select>
                 <!-- Comprobar el campo --> 
-                <div *ngIf="updPersonalesForm.get('estadoCivil')?.touched && 
-                            updPersonalesForm.get('estadoCivil')?.errors?.['required']"
+                <div *ngIf="updPersonalForm.get('civilstatus')?.touched &&
+                            updPersonalForm.get('civilstatus')?.errors?.['required']"
                 style="font-size: 80%; color: red;">
-                    Campo requerido.
+                    Campo obligatorio.
                 </div>
               </mat-form-field>
     
             <br>
     
-            <h5>INE</h5>
-            <div class="drop-file" *ngIf="!ine">
-                <h2>Arrastra un archivo</h2>
-                <h4>O</h4>
-                <h4 class="btn btn-sm btn-outline">selecciona el archivo</h4>
-                <input type="file" [(ngModel)]="datos.ine" (change)="getFile($event)" class="file" accept=".pdf" formControlName="ine"/>
-                
-            </div>
-            <div id="preview" class="drop-file" style="height: 80px;" *ngIf="ine">
-                <p>Archivo cargado con exito: {{ine.name}}</p>
-                <button (click)="ine = undefined" class="btn btn-sm btn-outline-warning">Eliminar archivo</button>
-            </div>
-            
-            <br>
-    
             <div>
-                <button class="btn btn-success" type="submit" #submitButton mat-raised-button [disabled]="updPersonalesForm.invalid || !ine">Guardar</button>
+                <button class="btn btn-success" type="submit" #submitButton mat-raised-button [disabled]="updPersonalForm.invalid || !curp">Guardar</button>
                 <button class="btn btn-warning" mat-raised-button routerLink="/informacion/dPersonales">Cancelar</button> 
             </div>
         </form>

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  apiBaseUrl : 'http://amilabmx.ddns.net:8080'
+  apiBaseUrl : 'http://amilabmx2.ddns.net:8080'
 };
 
 /*

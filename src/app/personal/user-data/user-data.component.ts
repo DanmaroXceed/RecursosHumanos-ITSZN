@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UsersService } from 'src/app/core/servicios/users.service';
-import { personalData } from 'src/models/personalData';
+import { PersonalData } from 'src/models/PersonalData';
 
 @Component({
   selector: 'app-user-data',
@@ -13,7 +13,7 @@ import { personalData } from 'src/models/personalData';
 export class UserDataComponent {
   email!: string;
   nombre!: string;
-  usuario: personalData = {} as personalData;
+  usuario: PersonalData = {} as PersonalData;
 
   public cstates: { label: string; value: string }[] = [
     { label: "Soltero", value: "soltero" },
@@ -27,7 +27,7 @@ export class UserDataComponent {
     this.nombre = this.cookieService.get('name')
 
     this.userService.getUserbyEmail(this.email).subscribe((data:any) => {
-      this.usuario = data as personalData
+      this.usuario = data as PersonalData
     })
   }
 }

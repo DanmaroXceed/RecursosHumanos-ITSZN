@@ -7,7 +7,6 @@ import { PersonalComponent } from './personal/personal.component';
 import { AddComponent } from './personal/add/add.component';
 import { PreferenciasComponent } from './preferencias/preferencias.component';
 import { UserDataComponent } from './personal/user-data/user-data.component';
-import { StudiesProgramComponent } from "./studies-program/studies-program.component";
 import { InformacionComponent } from './informacion/informacion.component';
 import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
 import { ChgPassComponent } from './chg-pass/chg-pass.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
   { path:'home', component: HomeComponent, canActivate: [CanActivateGuard]}, //, canActivate: [CanActivateGuard] 
   { path:'preferencias', component: PreferenciasComponent, canActivate: [CanActivateGuard]},
   { path:'preferencias/personal', component: PersonalComponent, canActivate: [CanActivateGuard]},
-  { path:'preferencias/programasEstudio', component: StudiesProgramComponent, canActivate: [CanActivateGuard]},
   { path:'personal/add', component: AddComponent, canActivate: [CanActivateGuard]},
   { path:'informacion', component: InformacionComponent, canActivate: [CanActivateGuard],
     children:[

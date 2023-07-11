@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { UsersService } from 'src/app/core/servicios/users.service';
-import { personalData } from 'src/models/personalData';
+import {PersonalData} from "../../../../models/PersonalData";
+import {PersonalDataService} from "./personal-data.service";
+
 
 @Component({
   selector: 'app-upd-user-data',
@@ -11,13 +13,13 @@ import { personalData } from 'src/models/personalData';
 })
 
 export class UpdUserDataComponent implements OnInit {
-  ine!:File | undefined;
+  curp!:File | undefined;
 
-  datos: personalData = {} as personalData;
-
+  response : any;
+  data: PersonalData = {} as PersonalData;
   email!: string;
 
-  updPersonalesForm!: FormGroup;  
+  updPersonalForm!: FormGroup;
 
   cstates: { label: string; value: string }[] = [
     { label: "Soltero", value: "soltero" },
@@ -27,58 +29,54 @@ export class UpdUserDataComponent implements OnInit {
 
   constructor(private cookieService : CookieService,
               private userService : UsersService,
-              private formBuilder: FormBuilder){
-    this.email = this.cookieService.get('email')
-    this.datos.nombre = this.cookieService.get('name')
-
-    // this.userService.getUserbyEmail(this.email).subscribe((data:any) => {
-    //   console.log("usuario: " + data)
-    // })
+              private formBuilder: FormBuilder,
+              private personalDataService: PersonalDataService){
+    this.email = this.cookieService.get('email');
+    this.data.fullname = this.cookieService.get('name');
+    this.data.verified = false;
   }
 
   ngOnInit(): void {
-    this.updPersonalesForm = this.initForm();
+    this.updPersonalForm = this.initForm();
   }
 
   initForm(): FormGroup {
     return this.formBuilder.group({
-      nombre: new FormControl("", [
+      fullname: new FormControl("", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50),
       ]),
-      fechaNac: new FormControl("", [
+      birthdate: new FormControl("", [
         Validators.required
       ]),
-      curp : new FormControl("", [
-        Validators.required,
-        Validators.pattern('^[A-Z]{4}[0-9]{6}[H,M][A-Z]{5}[0-9]{2}$'),
-      ]),
-      rfc: new FormControl("", [
-        Validators.required,
-        Validators.pattern('^[A-Z]{4}[0-9]{6}[A-Z0-9]{3}$')
-      ]),
-      domicilio: new FormControl("", [
-        Validators.required,
-      ]),
-      telefono: new FormControl("", [
+      curpfile:new FormControl("", []),
+      phone: new FormControl("", [
         Validators.required,
         Validators.minLength(10),
         Validators.maxLength(10),
       ]),
-      estadoCivil: new FormControl("", [
+      civilstatus: new FormControl("", [
         Validators.required,
-      ]),
-      ine: new FormControl("", [])
+      ])
     });
   }
 
   updPersonalData(){
-    console.log(this.datos)
+    //console.log(this.curp?.name);
+
+    this.personalDataService.addPersonalData(this.email, this.data, this.curp!).subscribe(
+        resp => {
+          this.response = resp;
+          console.log(this.response);
+        }
+    );
+
   }
 
   getFile(event:any){
-    this.ine = event.target.files[0];
-    console.log("file", this.ine)
+    this.curp = event.target.files[0];
+
+    //console.log("file", this.curp?.arguments);
   }
 }

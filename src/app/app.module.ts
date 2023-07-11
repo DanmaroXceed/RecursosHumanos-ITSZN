@@ -21,11 +21,11 @@ import { AddComponent } from './personal/add/add.component';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { PreferenciasComponent } from './preferencias/preferencias.component';
 import { UserDataComponent } from './personal/user-data/user-data.component';
-import { StudiesProgramComponent } from './studies-program/studies-program.component';
 import { InformacionComponent } from './informacion/informacion.component';
 import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ChgPassComponent } from './chg-pass/chg-pass.component';
+
 
 
 @NgModule({
@@ -38,10 +38,9 @@ import { ChgPassComponent } from './chg-pass/chg-pass.component';
     AddComponent,
     PreferenciasComponent,
     UserDataComponent,
-    StudiesProgramComponent,
     InformacionComponent,
     UpdUserDataComponent,
-    ChgPassComponent,
+    ChgPassComponent
   ],
   imports: [
     BrowserModule,
