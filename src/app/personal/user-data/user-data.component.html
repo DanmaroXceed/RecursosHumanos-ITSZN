@@ -3,28 +3,23 @@
         <ul style="list-style-type: none">
             <li>Nombre:</li>
             <li>Fecha de nacimiento:</li>
-            <li>CURP:</li>
-            <li>RFC:</li>
-            <li>Domicilio:</li>
             <li>Telefono:</li>
+            <li>CURP:</li>
             <li>Correo Electronico:</li>
             <li>Estado civil:</li>
-            <li>INE:</li>
     
             <div class="boton">
                 <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
             </div>
         </ul>
         <ul class="noBullet">
-            <li>{{nombre}}</li>
+            <li>{{usuario.fullname}}</li>
             <li>{{usuario.birthdate}}</li>
-            <li>{{usuario.curpfile}}</li>
-            <!-- <li>{{usuario.rfc}}</li>
-            <li>{{usuario.domicilio}}</li>
-            <li>{{usuario.telefono}}</li>
+            <li>{{usuario.phone}}</li>
+            <li><a href='{{urldownload}}{{usuario.curpFile.filename}}'>{{usuario.curpFile.filename}}</a></li>
             <li>{{email}}</li>
-            <li>{{usuario.estadoCiv}}</li>-->
-            <li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>
+            <li>{{usuario.civilstatus}}</li>
+            <!--<li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>-->
         </ul> 
     </div>
 </div>

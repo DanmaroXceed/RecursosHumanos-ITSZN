@@ -17,7 +17,7 @@ export class UsersService {
    }
 
    public getUserbyEmail(email: string): Observable<string>{
-    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/userprofile/getUserProfileByEmail/`+ email);
+    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/userprofile/getUserProfileByEmail/`+email);
   }
 
   public getUsersEnabledByRole(role: string):Observable<any>{

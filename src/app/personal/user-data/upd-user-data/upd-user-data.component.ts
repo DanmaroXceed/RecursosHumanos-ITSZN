@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { UsersService } from 'src/app/core/servicios/users.service';
 import {PersonalData} from "../../../../models/PersonalData";
 import {PersonalDataService} from "./personal-data.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -30,7 +31,8 @@ export class UpdUserDataComponent implements OnInit {
   constructor(private cookieService : CookieService,
               private userService : UsersService,
               private formBuilder: FormBuilder,
-              private personalDataService: PersonalDataService){
+              private personalDataService: PersonalDataService,
+              private router: Router){
     this.email = this.cookieService.get('email');
     this.data.fullname = this.cookieService.get('name');
     this.data.verified = false;
@@ -69,6 +71,8 @@ export class UpdUserDataComponent implements OnInit {
         resp => {
           this.response = resp;
           console.log(this.response);
+          if(this.response.status == 200)
+            this.router.navigate(['/informacion/dpersonales']);
         }
     );
 
