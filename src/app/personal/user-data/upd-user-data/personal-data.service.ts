@@ -13,12 +13,14 @@ export class PersonalDataService {
 
   constructor(private http: HttpClient) { }
 
-  public addPersonalData (email: string, pd: PersonalData, curpfile: File): Observable<any>{
+  public addPersonalData (email: string, pd: PersonalData, curpfile: File, rfcfile: File, cdomfile: File): Observable<any>{
     const body = JSON.stringify(pd);
     let objectsToSend:FormData = new FormData();
     objectsToSend.append('email', email);
     objectsToSend.append('userProfile', body);
     objectsToSend.append('curpfile', curpfile, curpfile.name);
+    objectsToSend.append('rfcfile', rfcfile, rfcfile.name);
+    objectsToSend.append('cdomfile', cdomfile, cdomfile.name);
     return this.http.post<PersonalData>(`${this.apiServerUrl}/api/v1/registration/userprofile/add/${email}`, objectsToSend);
   }
 /*

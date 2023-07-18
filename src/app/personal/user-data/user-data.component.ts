@@ -18,7 +18,9 @@ export class UserDataComponent implements OnInit{
   nombre!: string;
   usuario = {} as PersonalData;
   private apiServerUrl = environment.apiBaseUrl;
-  urldownload : string = this.apiServerUrl + "/api/v1/registration/userprofile/curp/";
+  urldownloadCURP : string = this.apiServerUrl + "/api/v1/registration/userprofile/curp/";
+  urldownloadRFC : string = this.apiServerUrl + "/api/v1/registration/userprofile/rfc/";
+  urldownloadCDOM : string = this.apiServerUrl + "/api/v1/registration/userprofile/cdom/";
 
 
 

@@ -5,8 +5,10 @@
             <li>Fecha de nacimiento:</li>
             <li>Telefono:</li>
             <li>CURP:</li>
+            <li>RFC:</li>
             <li>Correo Electronico:</li>
             <li>Estado civil:</li>
+            <li>Comprobante de domicilio:</li>
     
             <div class="boton">
                 <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
@@ -16,9 +18,11 @@
             <li>{{usuario.fullname}}</li>
             <li>{{usuario.birthdate}}</li>
             <li>{{usuario.phone}}</li>
-            <li><a href='{{urldownload}}{{usuario.curpFile.filename}}'>{{usuario.curpFile.filename}}</a></li>
+            <li><a href='{{urldownloadCURP}}{{usuario.curpFile.filename}}'>{{usuario.strCURP}}</a></li>
+            <li><a href='{{urldownloadRFC}}{{usuario.rfcfile.filename}}'>{{usuario.strRFC}}</a></li>
             <li>{{email}}</li>
             <li>{{usuario.civilstatus}}</li>
+            <li><a href='{{urldownloadCDOM}}{{usuario.cdomfile.filename}}'>{{usuario.cdomfile.filename}}</a></li>
             <!--<li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>-->
         </ul> 
     </div>

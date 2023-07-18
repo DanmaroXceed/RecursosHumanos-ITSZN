@@ -31,7 +31,24 @@
 
             <br>
 
-            <h5>CURP</h5>
+            <mat-form-field class="input">
+                <mat-label>CURP</mat-label>
+                <input matInput formControlName="strCURP" [(ngModel)]="data.strCURP">
+                <!-- Comprobar el campo --> 
+                <div *ngIf="updPersonalForm.get('strCURP')?.touched &&
+                            updPersonalForm.get('strCURP')?.errors?.['required']"
+                style="font-size: 80%; color: red;">
+                    Campo obligatorio
+                </div>
+                <div *ngIf="updPersonalForm.get('strCURP')?.errors?.['pattern']"
+                style="font-size: 80%; color: red;">
+                    Ingrese una CURP valida
+                </div>
+            </mat-form-field>
+    
+            <br>
+
+            <h5>Comprobante de CURP</h5>
             <div class="drop-file" *ngIf="!curp">
                 <h2>Arrastre un archivo</h2>
                 <h4>O</h4>
@@ -42,6 +59,53 @@
             <div id="preview" class="drop-file" style="height: 80px;" *ngIf="curp">
                 <p>Archivo cargado con exito: {{curp.name}}</p>
                 <button (click)="curp = undefined" class="btn btn-sm btn-outline-warning">Eliminar archivo</button>
+            </div>
+
+            <br>
+
+            <mat-form-field class="input">
+                <mat-label>RFC</mat-label>
+                <input matInput formControlName="strRFC" [(ngModel)]="data.strRFC">
+                <!-- Comprobar el campo --> 
+                <div *ngIf="updPersonalForm.get('strRFC')?.touched &&
+                            updPersonalForm.get('strRFC')?.errors?.['required']"
+                style="font-size: 80%; color: red;">
+                    Campo obligatorio
+                </div>
+                <div *ngIf="updPersonalForm.get('strRFC')?.errors?.['pattern']"
+                style="font-size: 80%; color: red;">
+                    Ingrese un RFC valido
+                </div>
+            </mat-form-field>
+    
+            <br>
+
+            <h5>Comprobante de RFC</h5>
+            <div class="drop-file" *ngIf="!rfc">
+                <h2>Arrastre un archivo</h2>
+                <h4>O</h4>
+                <h4 class="btn btn-sm btn-outline">seleccione el archivo</h4>
+                <input type="file"  (change)="getRFC($event)" class="file" accept=".pdf" formControlName="rfcfile" id="rfcfile"/>
+
+            </div>
+            <div id="preview" class="drop-file" style="height: 80px;" *ngIf="rfc">
+                <p>Archivo cargado con exito: {{rfc.name}}</p>
+                <button (click)="rfc = undefined" class="btn btn-sm btn-outline-warning">Eliminar archivo</button>
+            </div>
+
+            <br>
+
+            <h5>Comprobante de Domicilio</h5>
+            <div class="drop-file" *ngIf="!compDom">
+                <h2>Arrastre un archivo</h2>
+                <h4>O</h4>
+                <h4 class="btn btn-sm btn-outline">seleccione el archivo</h4>
+                <input type="file"  (change)="getCDOM($event)" class="file" accept=".pdf" formControlName="compDom" id="compDomfile"/>
+
+            </div>
+            <div id="preview" class="drop-file" style="height: 80px;" *ngIf="compDom">
+                <p>Archivo cargado con exito: {{compDom.name}}</p>
+                <button (click)="compDom = undefined" class="btn btn-sm btn-outline-warning">Eliminar archivo</button>
             </div>
 
             <br>
