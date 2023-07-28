@@ -1,13 +1,12 @@
 import { Assignment } from "./Assignment";
-import { rfcfile } from "./rfcFile";
 import { compDOMFile } from "./compDOMFile";
 import { UserLogged } from "./UserLogged.model";
+import { rfcfile } from "./rfcfile";
 
 export interface PersonalData{
     id: number;
     fullname: string;
     birthdate: Date;
-    curpfile: string;
     strCURP: string;
     rfcfile: rfcfile;
     strRFC: string;

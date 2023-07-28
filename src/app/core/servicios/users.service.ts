@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/models/User';
+import {PersonalData} from "../../../models/PersonalData";
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,8 @@ export class UsersService {
     
    }
 
-   public getUserbyEmail(email: string): Observable<string>{
-    return this.http.get<any>(`${this.apiServerUrl}/api/v1/registration/userprofile/getUserProfileByEmail/`+email);
+   public getUserbyEmail(email: string): Observable<any>{
+    return this.http.get<PersonalData>(`${this.apiServerUrl}/api/v1/registration/userprofile/getUserProfileByEmail/${email}`, { observe: 'response' });
   }
 
   public getUsersEnabledByRole(role: string):Observable<any>{

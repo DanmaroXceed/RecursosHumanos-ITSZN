@@ -25,6 +25,7 @@ import { InformacionComponent } from './informacion/informacion.component';
 import { UpdUserDataComponent } from './personal/user-data/upd-user-data/upd-user-data.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { ChgPassComponent } from './chg-pass/chg-pass.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -57,6 +58,7 @@ import { ChgPassComponent } from './chg-pass/chg-pass.component';
     MatSelectModule,
     CdkAccordionModule,
     NgxExtendedPdfViewerModule,
+    ToastrModule.forRoot(),
   ],
   providers: [HttpClientModule, CookieService],
   bootstrap: [AppComponent]

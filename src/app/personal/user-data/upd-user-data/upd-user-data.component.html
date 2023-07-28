@@ -1,3 +1,4 @@
+
 <div class="contenido">
         <form class="formulario" (ngSubmit)="updPersonalData()" [formGroup]="updPersonalForm">
 
@@ -15,12 +16,12 @@
                     El nombre debe ser mayor a 3 caracteres
                 </div>
             </mat-form-field>
-    
+
             <br>
 
             <mat-form-field class="input">
                 <mat-label>Fecha de nacimiento</mat-label>
-                <input matInput type="date" formControlName="birthdate" [(ngModel)]="data.birthdate">
+                <input matInput type="date" formControlName="birthdate" [(ngModel)]="data.birthdate" value="data.birthdate">
 
                 <div *ngIf="updPersonalForm.get('birthdate')?.touched &&
                             updPersonalForm.get('birthdate')?.errors?.['required']"
@@ -80,7 +81,7 @@
     
             <br>
 
-            <h5>Comprobante de RFC</h5>
+            <h5>Constancia de Situación Fiscal</h5>
             <div class="drop-file" *ngIf="!rfc">
                 <h2>Arrastre un archivo</h2>
                 <h4>O</h4>
@@ -159,7 +160,18 @@
     
             <div>
                 <button class="btn btn-success" type="submit" #submitButton mat-raised-button [disabled]="updPersonalForm.invalid || !curp">Guardar</button>
-                <button class="btn btn-warning" mat-raised-button routerLink="/informacion/dPersonales">Cancelar</button> 
+                <button class="btn btn-warning" mat-raised-button routerLink="/informacion/dPersonales">Cancelar</button>
+
+                <div *ngIf = "startingSpinner">
+                    <clr-spinner clrInline>
+                        Almacenando el registro...
+                    </clr-spinner>
+                    <span>
+                        Almacenando el registro...
+                    </span>
+                </div>
+
             </div>
         </form>
+
 </div>

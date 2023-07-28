@@ -21,8 +21,20 @@ export class PersonalDataService {
     objectsToSend.append('curpfile', curpfile, curpfile.name);
     objectsToSend.append('rfcfile', rfcfile, rfcfile.name);
     objectsToSend.append('cdomfile', cdomfile, cdomfile.name);
-    return this.http.post<PersonalData>(`${this.apiServerUrl}/api/v1/registration/userprofile/add/${email}`, objectsToSend);
+    return this.http.post<PersonalData>(`${this.apiServerUrl}/api/v1/registration/userprofile/add/${email}`, objectsToSend, { observe: 'response' });
   }
+
+  public updatePersonalData(id: number, pd: PersonalData, curpfile: File, rfcfile: File, cdomfile: File): Observable<any>{
+    const body = JSON.stringify(pd);
+    let objectsToSend:FormData = new FormData();
+    objectsToSend.append('id', id.toString());
+    objectsToSend.append('userProfile', body);
+    objectsToSend.append('curpfile', curpfile, curpfile.name);
+    objectsToSend.append('rfcfile', rfcfile, rfcfile.name);
+    objectsToSend.append('cdomfile', cdomfile, cdomfile.name);
+    return this.http.patch<PersonalData>(`${this.apiServerUrl}/api/v1/registration/userprofile/update/${id}`, objectsToSend, { observe: 'response' });
+  }
+
 /*
   public addCurpFile(email:string, curp:File): Observable<HttpEvent<{}>>{
     const data: FormData = new FormData();

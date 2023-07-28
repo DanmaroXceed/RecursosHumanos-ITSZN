@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { UsersService } from 'src/app/core/servicios/users.service';
 import {PersonalData} from "../../../../models/PersonalData";
 import {PersonalDataService} from "./personal-data.service";
 import {Router} from "@angular/router";
+import { ToastrService } from 'ngx-toastr';
+import {HttpHeaders} from "@angular/common/http";
 
 
 @Component({
@@ -14,15 +16,17 @@ import {Router} from "@angular/router";
 })
 
 export class UpdUserDataComponent implements OnInit {
+
+  //usuario : PersonalData = {} as PersonalData;
   curp!:File | undefined;
   rfc!:File | undefined;
   compDom!:File | undefined;
-
   response : any;
   data: PersonalData = {} as PersonalData;
+  updatedData : PersonalData = {} as PersonalData;
   email!: string;
-
   updPersonalForm!: FormGroup;
+  startingSpinner : boolean = false;
 
   cstates: { label: string; value: string }[] = [
     { label: "Soltero", value: "soltero" },
@@ -34,13 +38,22 @@ export class UpdUserDataComponent implements OnInit {
               private userService : UsersService,
               private formBuilder: FormBuilder,
               private personalDataService: PersonalDataService,
-              private router: Router){
+              private router: Router,
+              private toastr: ToastrService){
     this.email = this.cookieService.get('email');
     this.data.fullname = this.cookieService.get('name');
     this.data.verified = false;
   }
 
+  getLocalStorege(): PersonalData{
+      let sUsuario = localStorage.getItem("PersonalData");
+      // @ts-ignore
+      return  JSON.parse(sUsuario);
+  }
+
   ngOnInit(): void {
+    this.data = this.getLocalStorege();
+    //console.log(this.data);
     this.updPersonalForm = this.initForm();
   }
 
@@ -77,24 +90,49 @@ export class UpdUserDataComponent implements OnInit {
   }
 
   updPersonalData(){
-    //console.log(this.curp?.name);
+    this.startingSpinner = true;
+    if (this.data.id === undefined){
+      //New record
+      this.personalDataService.addPersonalData(this.email, this.data, this.curp!, this.rfc!, this.compDom!).subscribe(
+          resp => {
+            this.response = resp;
+            if (this.response.status == 201) {
+              this.startingSpinner = false;
+              this.showSuccess("Almacenado correctamente", "Notificación");
+              this.router.navigate(['/informacion']);
+            }
+          });
+    } else {
+      // update
+      //console.log(this.data);
+      this.updatedData.id = this.data.id;
+      this.updatedData.fullname = this.data.fullname;
+      this.updatedData.birthdate = this.data.birthdate;
+      this.updatedData.strCURP = this.data.strCURP;
+      this.updatedData.strRFC = this.data.strRFC;
+      this.updatedData.phone = this.data.phone;
+      this.updatedData.verified = this.data.verified;
+      this.updatedData.civilstatus = this.data.civilstatus;
 
-    this.personalDataService.addPersonalData(this.email, this.data, this.curp!, this.rfc!, this.compDom!).subscribe(
-        resp => {
-          this.response = resp;
-          console.log(this.response);
-          if(this.response.status == 200)
-            this.router.navigate(['/informacion/dpersonales']);
-        }
-    );
+      this.personalDataService.updatePersonalData(this.data.id, this.updatedData, this.curp!, this.rfc!, this.compDom!).subscribe(
+          resp => {
+            this.response = resp;
+            console.log(this.response.status);
+            if (this.response.status == 200) {
+              this.startingSpinner = false;
+              this.showSuccess("Almacenado correctamente", "Notificación");
+              this.router.navigate(['/informacion']);
+            }
+          }
+      );
+    }
+
 
     // console.log(this.email, this.data, this.curp!, this.rfc!, this.compDom!)
-
   }
 
   getFile(event:any){
     this.curp = event.target.files[0];
-
     //console.log("file", this.curp?.arguments);
   }
 
@@ -106,7 +144,25 @@ export class UpdUserDataComponent implements OnInit {
   
   getCDOM(event:any){
     this.compDom = event.target.files[0];
-
     //console.log("file", this.curp?.arguments);
   }
+
+
+
+  showSuccess(message: string, title: string){
+    this.toastr.success(message, title)
+  }
+
+  showError(message: string, title: string){
+    this.toastr.error(message, title)
+  }
+
+  showInfo(message: string, title: string){
+    this.toastr.info(message, title)
+  }
+
+  showWarning(message: string, title: string){
+    this.toastr.warning(message, title)
+  }
+
 }

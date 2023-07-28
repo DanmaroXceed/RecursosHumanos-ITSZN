@@ -11,10 +11,18 @@
             <li>Comprobante de domicilio:</li>
     
             <div class="boton">
-                <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales">Editar</button>
+                <button type="button" class="btn btn-primary" routerLink="/informacion/updPersonales" (click)="sendToLocalStorage()" [disabled]="showSpinner" >Editar</button>
+                <div *ngIf = "showSpinner">
+                    <clr-spinner clrInline>
+                        Obteniendo el registro...
+                    </clr-spinner>
+                    <span>
+                        Obteniendo el registro...
+                    </span>
+                </div>
             </div>
         </ul>
-        <ul class="noBullet">
+        <ul class="noBullet" *ngIf="hasData; else templateElse">
             <li>{{usuario.fullname}}</li>
             <li>{{usuario.birthdate}}</li>
             <li>{{usuario.phone}}</li>
@@ -23,7 +31,10 @@
             <li>{{email}}</li>
             <li>{{usuario.civilstatus}}</li>
             <li><a href='{{urldownloadCDOM}}{{usuario.cdomfile.filename}}'>{{usuario.cdomfile.filename}}</a></li>
-            <!--<li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li>-->
-        </ul> 
+           <!-- <li><button class="btn btn-sm btn-outline" (click)="true">mostrar</button></li> -->
+        </ul>
+        <ng-template #templateElse>
+        </ng-template>
+
     </div>
 </div>
